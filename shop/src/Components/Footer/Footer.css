@@ -8,7 +8,7 @@
     border-bottom: 1px solid #FFFFFF;
 }
 
-footer .nav-footer-style {
+.nav-footer-style {
     padding: 115px 0 53px 0;
 }
 
@@ -16,13 +16,13 @@ footer .nav-footer-style {
     padding: 95px 0 55px 0;
 }
 
-footer ul.nav-list-footer {
+ul.nav-list-footer {
     display: flex;
     justify-content: space-between;
     column-gap: 80px;
 }
 
-footer ul.nav-list-footer a {
+ul.nav-list-footer a {
     color: var(--secondTextColor);
     font-weight: 700;
     font-size: 14px;

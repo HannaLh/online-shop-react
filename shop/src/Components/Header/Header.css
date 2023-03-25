@@ -3,25 +3,25 @@
     color: var(--secondTextColor);
 }
 
-header .header-nav {
+.header-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     min-height: 64px;
 }
 
-header ul.nav-list {
+ul.nav-list {
     display: flex;
 }
 
-header ul.nav-list a {
+ul.nav-list a {
     color: var(--secondTextColor);
     padding: 0 45px 0 0;
     text-transform: uppercase;
     transition: opacity 500ms ease;
 }
 
-header ul.nav-list a:hover{
+ul.nav-list a:hover{
     opacity: 0.5;
 }
 
