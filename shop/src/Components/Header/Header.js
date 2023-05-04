@@ -1,5 +1,5 @@
 import React from 'react';
-import "./Header.css"
+import "./Header.css";
 
 export default function Header() {
     return (
@@ -28,6 +28,7 @@ export default function Header() {
                         </clipPath>
                         </defs>
                     </svg>
+                    
                     <nav className='nav'>
                         <ul className='nav-list'>
                             <li className='nav-item'><a href="/#">living room</a></li>
