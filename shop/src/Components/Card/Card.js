@@ -1,13 +1,7 @@
 import React, {useState} from 'react'
 import "./Card.css"; 
+import prod1 from "../assets/img/goods/sofa1.png"
 
-function importAll(r) {
-    let images = {};
-    r.keys().map(item => { images[item.replace('./', '')] = r(item); });
-    return images;
-}
-
-const images = importAll(require.context('/Users/annaleoshko/Desktop/online-shop-react/shop/src/img/goods', false, /\.png/));
 
 export default function Card({ title, price }) {
     const [prodCount, setProdCount] = useState(0);
@@ -17,7 +11,7 @@ export default function Card({ title, price }) {
     return (
         <div className='card'>
             <div className='card-inner'>
-                <img src={images['sofa1.png']} alt='Furniture'></img>
+                <img src={prod1} alt='Furniture'></img>
                 <div className='card-price'>
                     <h3>{title}</h3>
                     <span>{price} $</span>

@@ -8,6 +8,10 @@ import Footer from "./Footer/Footer";
 
 import "./App.css";
 
+import furniture from "./assets/furniture.json";
+console.log(furniture);
+
+
 function App() {
     return (
         <div className='wrapper'>

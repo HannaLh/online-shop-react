@@ -1,6 +1,6 @@
 import React from 'react';
 import "./Drawer.css";
-import cartSofa1 from "/Users/annaleoshko/Desktop/online-shop-react/shop/src/img/goods/sofa1.png"
+import cartSofa1 from "../assets/img/goods/sofa1.png"
 
 export default function Drawer() {
     return(
