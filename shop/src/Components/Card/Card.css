@@ -1,7 +1,6 @@
 .card {
     border-bottom: 1px solid #C4C4C4;
-    margin: 0 40px 40px 0;
-    width: 290px;
+    width: 310px;
     min-height: 310px;
 }
 
@@ -12,14 +11,17 @@
 
 .card-price {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     padding: 12px 0 0 0;
+    column-gap: 40px;
+    min-height: 60px;
 }
 
 .card-price h3 {
     font-weight: 400;
     font-size: 18px;
     line-height: 21px;
+    width: 200px;
 }
 
 .card-price span {
@@ -27,13 +29,6 @@
     font-size: 22px;
     line-height: 26px;
     color: var(--elementsColor);
-}
-
-.card-description {
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
-    padding: 12px 0 0 0;
 }
 
 .cart-button-wrap {

@@ -3,130 +3,78 @@
         "id": 0,
         "imageUrl": "https://assets.hermes.com/is/image/hermesproduct/les-trotteuses-d-hermes-occasional-table-medium-model--960169M%2001-worn-2-0-0-800-800_g.jpg",
         "title": "Les Trotteuses d'Hermes occasional table",
+        "description": "Green 2-Seater velvet sofa",
         "price": 1200,
-        "category": 0,
         "rating": 4
     },
     {
         "id": 1,
         "imageUrl": "https://assets.hermes.com/is/image/hermesproduct/metiers-chair--960081M%2005-worn-2-0-0-800-800_g.jpg",
         "title": "Cordelie Tremplin Carpet",
-        "types": [
-        0
-        ],
+        "description": "Green 2-Seater velvet sofa",
         "price": 245,
-        "category": 0,
         "rating": 6
     },
     {
         "id": 2,
         "imageUrl": "https://assets.hermes.com/is/image/hermesproduct/cordelie-tremplin-carpet--210050M%2004-worn-2-0-0-800-800_g.jpg",
         "title": "Les Trotteuses d'Hermes occasional tabler",
-        "types": [
-        0
-        ],
+        "description": "Green 2-Seater velvet sofa",
         "price": 295,
-        "category": 1,
         "rating": 4
     },
     {
         "id": 3,
         "imageUrl": "https://assets.hermes.com/is/image/hermesproduct/reeditions-j.-m.-frank-par-hermes-comfortable-club-armchair--910003M%2001-worn-2-0-0-800-800_g.jpg",
         "title": "Hermes Comfortable club armchair",
-        "types": [
-        1
-        ],
-        
+        "description": "Green 2-Seater velvet sofa",
         "price": 275,
-        "category": 2,
         "rating": 2
     },
     {
         "id": 4,
         "imageUrl": "https://assets.hermes.com/is/image/hermesproduct/hippodrome-d-hermes-coffee-table--960165M%2001-worn-2-0-0-800-800_g.jpg",
         "title": "Hippodrome d'Hermes coffee table",
-        "types": [
-        0,
-        1
-        ],
-        
+        "description": "Green 2-Seater velvet sofa",
         "price": 415,
-        "category": 3,
         "rating": 8
     },
     {
         "id": 5,
         "imageUrl": "https://assets.hermes.com/is/image/hermesproduct/les-trotteuses-d-hermes-occasional-table-small-model--960168M%2001-worn-2-0-0-800-800_g.jpg",
         "title": "Les Trotteuses d'Hermes occasional table, small model",
-        "types": [
-        0
-        ],
-        "sizes": [
-        30,
-        40
-        ],
+        "description": "Green 2-Seater velvet sofa",
         "price": 580,
-        "category": 2,
         "rating": 2
     },
     {
         "id": 6,
         "imageUrl": "https://assets.hermes.com/is/image/hermesproduct/les-necessaires-d-hermes-satellite-table-large-model--960214M%2001-worn-2-0-0-800-800_g.jpg",
         "title": "Les Necessaires d'Hermes satellite table, large model",
-        "types": [
-        0,
-        1
-        ],
-        
+        "description": "Green 2-Seater velvet sofa",
         "price": 675,
-        "category": 1,
         "rating": 9
     },
     {
         "id": 7,
         "imageUrl": "https://assets.hermes.com/is/image/hermesproduct/reeditions-j.-m.-frank-par-hermes-comfortable-2-seater-sofa--960155M%2006-worn-2-0-0-800-800_g.jpg",
         "title": "Reeditions J.-M. Frank par Hermes Comfortable 2-seater sofa",
-        "types": [
-        0,
-        1
-        ],
-        "sizes": [
-        26,
-        30,
-        40
-        ],
         "price": 450,
-        "category": 4,
         "rating": 10
     },
     {
         "id": 8,
         "imageUrl": "https://assets.hermes.com/is/image/hermesproduct/sofa-sellier-2-seater--960023M%2001-worn-2-0-0-800-800_g.jpg",
         "title": "Sofa Sellier 2-seater",
-        "types": [
-        0,
-        1
-        ],
-        "sizes": [
-        26,
-        30,
-        40
-        ],
         "price": 395,
-        "category": 5,
         "rating": 10
     },
     {
         "id": 9,
         "imageUrl": "https://assets.hermes.com/is/image/hermesproduct/equipages-d-hermes-attelage-writing-desk--960062M%2001-worn-2-0-0-800-800_g.jpg",
         "title": "Equipages d’Hermes writing desk",
-        "types": [
-        0,
-        1
-        ],
-        
+        "description": "Green 2-Seater velvet sofa",
         "price": 285,
-        "category": 5,
         "rating": 7
     }
 ]

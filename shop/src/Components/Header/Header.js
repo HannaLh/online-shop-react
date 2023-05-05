@@ -1,6 +1,6 @@
 import React from 'react';
 import "./Header.css";
-import logoSvg from '/Users/annaleoshko/Desktop/online-shop-react/shop/src/images/logo-maynooth.svg'
+import logoSvg from '../assets/img/logo/logo-maynooth.svg'
 
 export default function Header() {
     return (
@@ -8,7 +8,6 @@ export default function Header() {
             <div className='container'>
                 <div className='header-nav'>
                     <img width="198" src={logoSvg} alt="logo"></img>
-                    
                     <nav className='nav'>
                         <ul className='nav-list'>
                             <li className='nav-item'><a href="/#">living room</a></li>

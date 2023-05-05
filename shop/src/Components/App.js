@@ -24,14 +24,9 @@ function App() {
                 </div>
             </div>
             <div className="card-flex">
-                <Card title="Green Sofa" price={288}/>
-                <Card title="Comfort Chair" price={300}/>
-                <Card title="Ancient" price={400}/>
-                <Card title="Ancient" price={199}/>
-                <Card title="Special" price={256}/>
-                <Card title="Classy" price={334}/>
-                <Card title="Sunny" price={434}/>
-                <Card title="Comfort" price={453}/>
+                {furniture.map((obj) => (
+                    <Card title={obj.title} price={obj.price} image={obj.imageUrl}/>
+                ))}
             </div>
             <Drawer/>
             <Footer/>

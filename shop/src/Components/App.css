@@ -12,4 +12,6 @@
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 50px;
+    column-gap: 40px;
+    row-gap: 40px;
 }
