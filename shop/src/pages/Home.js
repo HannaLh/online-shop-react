@@ -10,11 +10,14 @@ export default function Home() {
     const [items, setItems] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [categoryId, setCategoryId] = useState(0);
-    const [sortType, setSortType] = useState(0);
+    const [sortType, setSortType] = useState({
+        name: 'popularity',
+        sort: 'rating'
+    });
 
     useEffect(() => {
         setIsLoading(true);
-        fetch('https://645513ffa74f994b3351784a.mockapi.io/items?category=' + categoryId)
+        fetch(`https://645513ffa74f994b3351784a.mockapi.io/items?${categoryId > 0 ? `category=${categoryId}` : ''}&sortBy=${sortType.sort}&order=asc`)
             .then((res) => {
                 return res.json();
             })
@@ -22,7 +25,7 @@ export default function Home() {
                 setItems(arr);
                 setIsLoading(false);
             })
-    }, [categoryId])
+    }, [categoryId, sortType])
     return (
         <>
             <Banner />
@@ -31,7 +34,7 @@ export default function Home() {
                         <div className='products-search'>
                             <Categories value={categoryId} onClickCategory={(id) => setCategoryId(id)}/>
                             <Sort value={sortType} onChangeSort={(id) => setSortType(id)}/>
-                        </div>
+                        </div> 
                     </div>
                     <div className="card-flex">
                         {isLoading
