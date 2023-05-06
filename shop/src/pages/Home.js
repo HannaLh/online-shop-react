@@ -1,16 +1,20 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 
 import Categories from '../Components/Categories/Categories';
 import Sort from '../Components/Sort/Sort'
-import Card from '../Components/FurnitureItems/Card'
-import Skeleton from '../Components/FurnitureItems/Card/CardSkeleton';
+import Card from '../Components/FurnitureBlock/Card'
+import Skeleton from '../Components/FurnitureBlock/Card/CardSkeleton';
 import Banner from "../Components/Banner/Banner";
 
 export default function Home() {
-    const [items, setItems] = React.useState([]);
-    const [isLoading, setIsLoading] = React.useState(true);
-    React.useEffect(() => {
-        fetch('https://645513ffa74f994b3351784a.mockapi.io/items')
+    const [items, setItems] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [categoryId, setCategoryId] = useState(0);
+    const [sortType, setSortType] = useState(0);
+
+    useEffect(() => {
+        setIsLoading(true);
+        fetch('https://645513ffa74f994b3351784a.mockapi.io/items?category=' + categoryId)
             .then((res) => {
                 return res.json();
             })
@@ -18,15 +22,15 @@ export default function Home() {
                 setItems(arr);
                 setIsLoading(false);
             })
-    }, [])
+    }, [categoryId])
     return (
         <>
             <Banner />
             <div className='container'>
                     <div className='container products'>
                         <div className='products-search'>
-                            <Categories />
-                            <Sort />
+                            <Categories value={categoryId} onClickCategory={(id) => setCategoryId(id)}/>
+                            <Sort value={sortType} onChangeSort={(id) => setSortType(id)}/>
                         </div>
                     </div>
                     <div className="card-flex">
