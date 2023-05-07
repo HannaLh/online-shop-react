@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import {useSelector, useDispatch} from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux';
+import axios from 'axios';
 
 import { setCategoryId } from '../redux/slices/filterSlice';
 import Categories from '../Components/Categories/Categories';
@@ -10,8 +11,8 @@ import Banner from "../Components/Banner/Banner";
 
 export default function Home() {
     const dispatch = useDispatch()
-    const categoryId = useSelector(state => state.filter.categoryId);
-    const sortType = useSelector(state => state.filter.sort.sortProperty);
+    const {categoryId, sort} = useSelector((state) => state.filter);
+    const sortType = sort.sortProperty;
 
     const [items, setItems] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -19,35 +20,35 @@ export default function Home() {
     const onChangeCategory = (id) => {
         dispatch(setCategoryId(id))
     }
-    const sortBy = sortType.replace('_', '');
-    const category = categoryId > 0 ? `category=${categoryId}` : '';
 
     useEffect(() => {
         setIsLoading(true);
-        fetch(`https://645513ffa74f994b3351784a.mockapi.io/items?${categoryId > 0 ? `category=${categoryId}` : ''}&sortBy=${sortType.sortProperty}&order=asc`)
-            .then((res) => {
-                return res.json();
-            })
-            .then((arr) => {
-                setItems(arr);
+
+        const sortBy = sortType.replace('_', '');
+        const category = categoryId > 0 ? `category=${categoryId}` : '';
+
+        axios.get(`https://645513ffa74f994b3351784a.mockapi.io/items?${category}&sortBy=${sortBy}&order=asc`)
+            .then(res => {
+                setItems(res.data);
                 setIsLoading(false);
             })
+            .catch((error) => console.log(error));
     }, [categoryId, sortType])
+
+    const furniture = items.map((obj) => <Card key={obj.id}{...obj} />);
+    const skeletons = [...new Array(6)].map((_, index) => <Skeleton key={index} />);
+
     return (
         <>
             <Banner />
             <div className='container'>
                     <div className='container products'>
                         <div className='products-search'>
-                            <Categories value={categoryId} onClickCategory={(id) => setCategoryId(id)}/>
-                            <Sort />
+                            <Categories value={categoryId} onChangeCategory={(i) => setCategoryId(i)}/>
+                            <Sort value={sortType} onChangeSort={(i) => (i)}/>
                         </div> 
                     </div>
-                    <div className="card-flex">
-                        {isLoading
-                            ? [...new Array(6)].map((_, index) => <Skeleton key={index}/>)
-                            : items.map((obj) => <Card title={obj.title} price={obj.price} image={obj.imageUrl}/>)}
-                    </div>
+                    <div className="card-flex"> {isLoading ? skeletons : furniture} </div>
             </div>
         </>
     )

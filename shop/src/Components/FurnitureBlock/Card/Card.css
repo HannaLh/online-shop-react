@@ -49,7 +49,7 @@
     column-gap: 5px;
 }
 
-.cart-button i {
+.cart-button__counter {
     width: 20px;
     height: 20px;
     color: var(--elementsColor);
