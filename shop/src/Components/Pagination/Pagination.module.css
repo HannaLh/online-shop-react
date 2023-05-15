@@ -1,0 +1,30 @@
+.root li {
+    display: inline-flex;
+    margin: 20px 0;
+}
+
+.root a {
+    cursor: pointer;
+    align-self: center;
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #C4C4C4;
+    color: #C4C4C4;
+    border-radius: 30px;
+}
+
+.root a:hover {
+    background-color: #7f7e7e;
+    color: rgb(67, 67, 67);
+}
+
+:global .selected a {
+    background-color: #a3a2a2;
+    color: rgb(67, 67, 67);
+}
+
+
+

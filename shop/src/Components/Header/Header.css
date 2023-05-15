@@ -12,11 +12,11 @@
 
 ul.nav-list {
     display: flex;
+    column-gap: 45px;
 }
 
 ul.nav-list a {
     color: var(--secondTextColor);
-    padding: 0 45px 0 0;
     text-transform: uppercase;
     transition: opacity 500ms ease;
 }
@@ -25,12 +25,19 @@ ul.nav-list a:hover{
     opacity: 0.5;
 }
 
-.header-menu__tools a {
-    padding-left: 60px;
-}
-
 .header-menu__tools span {
     padding: 5px;
     color: var(--secondTextColor);
     font-size: 16px;
+}
+
+.header-menu__tools {
+    display: flex;
+    position: relative;
+    column-gap: 15px;
+}
+
+.search-container {
+    position: absolute;
+    left: 105%;
 }
