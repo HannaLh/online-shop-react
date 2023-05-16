@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import qs from 'qs';
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
 import { setCategoryId, setCurrentPage, setFilters } from '../redux/slices/filterSlice';
 import Categories from '../Components/Categories/Categories';
@@ -105,7 +105,10 @@ export default function Home() {
                         </div> 
                     </div>
                 <div className="card-flex"> {isLoading ? skeletons : furniture} </div>
-                <Pagination currentPage={currentPage} onChangePage={onChangePage}/>
+                <Pagination
+                    currentPage={currentPage}
+                    onChangePage={onChangePage}
+                />
             </div>
         </>
     )
