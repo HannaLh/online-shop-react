@@ -1,7 +1,8 @@
 import React from 'react';
+
 import "./Categories.css"
 
-export default function Categories({ value, onClickCategory }) {
+export default function Categories({ value, onChangeCategory }) {
     const categories = ['All', 'Tables', 'Sofas', 'Chairs', 'Carpet', 'Armchair']; 
 
     return (
@@ -10,7 +11,7 @@ export default function Categories({ value, onClickCategory }) {
                 {categories.map((categoryName, i) => (
                     <li
                         key = {i}
-                        onClick={() => onClickCategory(i)}
+                        onClick={onChangeCategory}
                         className={value === i ? 'active' : ""}>
                         {categoryName}
                     </li>
