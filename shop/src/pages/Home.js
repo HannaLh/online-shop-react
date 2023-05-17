@@ -35,8 +35,6 @@ export default function Home() {
     };
 
     const getFurniture = async () => {
-        // setIsLoading(true);
-
         const sortBy = sortType.replace('_', '');
         const category = categoryId > 0 ? `category=${categoryId}` : '';
         const search = searchValue ? `search=${searchValue}` : '';
@@ -60,10 +58,9 @@ export default function Home() {
                 currentPage,
             };
             const queryString = qs.stringify(params, { skipNulls: true });
-            navigate(`?${queryString}`)
+            navigate(`/?${queryString}`);
         }
         if (!window.location.search) {
-            console.log(111);
             fetchFurniture();
         }
     }, [categoryId, sortType , searchValue, currentPage])
@@ -89,6 +86,7 @@ export default function Home() {
         }
     }, [])
 
+
     const furniture = items.filter(obj => {
         if (obj.title.toLowerCase().includes(searchValue.toLowerCase())) {
             return true;
@@ -106,8 +104,15 @@ export default function Home() {
                             <Categories value={categoryId} onChangeCategory={onChangeCategory}/>
                             <Sort value={sortType} onChangeSort={(i) => (i)}/>
                         </div> 
+                </div>
+                {status === 'error' ? (
+                    <div className='container'>
+                        <h2>Cannot load items</h2>
+                        <p>It seems that some kind of error has occured</p>
                     </div>
-                <div className="card-flex"> {status === 'loading' ? skeletons : furniture} </div>
+                ) : (
+                    <div className="card-flex"> {status === 'loading' ? skeletons : furniture} </div>
+                )}
                 <Pagination
                     currentPage={currentPage}
                     onChangePage={onChangePage}
