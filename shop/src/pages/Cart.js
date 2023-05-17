@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import CartItem from '../Components/CartItem';
+import CartItem  from '../Components/CartItem';
+import CartEmpty from '../Components/CartEmpty'
 import { clearItems } from '../redux/slices/cartSlice';
 
 export default function Cart() {
@@ -14,6 +15,10 @@ export default function Cart() {
         if (window.confirm('Do you want clear the cart?')) {
             dispatch(clearItems());
         }
+    };
+
+    if (!totalPrice) {
+        return <CartEmpty />;
     }
 
     return (

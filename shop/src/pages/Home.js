@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import axios from 'axios';
 import qs from 'qs';
 import { useNavigate } from 'react-router-dom';
 
@@ -12,6 +11,7 @@ import Skeleton from '../Components/FurnitureBlock/Card/CardSkeleton';
 import Banner from "../Components/Banner/Banner";
 import Pagination from '../Components/Pagination';
 import { SearchContext } from '../Components/App';
+import {  fetchFurniture } from '../redux/slices/furnitureSlice';
 
 export default function Home() {
     const dispatch = useDispatch();
@@ -19,35 +19,59 @@ export default function Home() {
     const isSearch = React.useRef(false);
     const isMounted = React.useRef(false);
 
+    const {items, status} = useSelector((state) => state.furniture);
     const { categoryId, sort, currentPage } = useSelector((state) =>state.filter);
 
     const {searchValue} = React.useContext(SearchContext);
     const sortType = sort.sortProperty;
-    const [items, setItems] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+    // const [isLoading, setIsLoading] = useState(true);
 
-    const onChangeCategory = React.useCallback((idx) => {
-        dispatch(setCategoryId(idx))
-    }, []);
+    const onChangeCategory = (id) => {
+        dispatch(setCategoryId(id))
+    };
 
     const onChangePage = (page) => {
         dispatch(setCurrentPage(page))
     };
 
-    const fetchFurniture = () => {
-        setIsLoading(true);
+    const getFurniture = async () => {
+        // setIsLoading(true);
 
         const sortBy = sortType.replace('_', '');
         const category = categoryId > 0 ? `category=${categoryId}` : '';
         const search = searchValue ? `search=${searchValue}` : '';
 
-        axios.get(`https://645513ffa74f994b3351784a.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=asc&search=${search}`)
-            .then(res => {
-                setItems(res.data);
-                setIsLoading(false);
-            })
-            .catch((error) => console.log(error));
-    }
+        dispatch(
+            fetchFurniture({
+                sortBy,
+                category,
+                search,
+                currentPage,
+            }),
+        );
+        window.scrollTo(0, 0);
+    };
+
+    useEffect(() => {
+        if (isMounted.current) {
+            const params = {
+                categoryId: categoryId > 0 ? categoryId : null,
+                sortProperty: sortType,
+                currentPage,
+            };
+            const queryString = qs.stringify(params, { skipNulls: true });
+            navigate(`?${queryString}`)
+        }
+        if (!window.location.search) {
+            console.log(111);
+            fetchFurniture();
+        }
+    }, [categoryId, sortType , searchValue, currentPage])
+
+    useEffect(() => {
+        getFurniture();
+    }, [categoryId, sortType, searchValue, currentPage])
+
 
     useEffect(() => {
         if (window.location.search) {
@@ -64,27 +88,6 @@ export default function Home() {
             isSearch.current = true;
         }
     }, [])
-
-        useEffect(() => {
-        if (isMounted.current) {
-            const queryString = qs.stringify({
-                sortProperty: sortType,
-                categoryId,
-                currentPage,
-            })
-            navigate(`?${queryString}`)
-        }
-        isMounted.current = true;
-    }, [categoryId, sortType , currentPage])
-
-    useEffect(() => {
-        window.scrollTo(0, 0);
-
-        if (!isSearch.current) {
-            fetchFurniture();
-        }
-        isSearch.current = false;
-    }, [categoryId, sortType, searchValue, currentPage])
 
     const furniture = items.filter(obj => {
         if (obj.title.toLowerCase().includes(searchValue.toLowerCase())) {
@@ -104,7 +107,7 @@ export default function Home() {
                             <Sort value={sortType} onChangeSort={(i) => (i)}/>
                         </div> 
                     </div>
-                <div className="card-flex"> {isLoading ? skeletons : furniture} </div>
+                <div className="card-flex"> {status === 'loading' ? skeletons : furniture} </div>
                 <Pagination
                     currentPage={currentPage}
                     onChangePage={onChangePage}
