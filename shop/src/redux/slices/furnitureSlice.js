@@ -42,6 +42,7 @@ const furnitureSlice = createSlice({
     },
 })
 
+export const selectFurnitureData = (state) => state.furniture;
 export const {setItems} = furnitureSlice.actions;
 export default furnitureSlice.reducer;
 

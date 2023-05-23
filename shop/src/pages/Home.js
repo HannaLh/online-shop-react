@@ -3,28 +3,26 @@ import { useSelector, useDispatch } from 'react-redux';
 import qs from 'qs';
 import { useNavigate } from 'react-router-dom';
 
-import { setCategoryId, setCurrentPage, setFilters } from '../redux/slices/filterSlice';
+import { selectFilter, setCategoryId, setCurrentPage, setFilters } from '../redux/slices/filterSlice';
 import Categories from '../Components/Categories/Categories';
 import Sort, { sortList } from '../Components/Sort/Sort'
 import Card from '../Components/FurnitureBlock/Card'
 import Skeleton from '../Components/FurnitureBlock/Card/CardSkeleton';
 import Banner from "../Components/Banner/Banner";
 import Pagination from '../Components/Pagination';
-import { SearchContext } from '../Components/App';
-import {  fetchFurniture } from '../redux/slices/furnitureSlice';
+import {  fetchFurniture, selectFurnitureData } from '../redux/slices/furnitureSlice';
 
 export default function Home() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
     const isSearch = React.useRef(false);
     const isMounted = React.useRef(false);
 
-    const {items, status} = useSelector((state) => state.furniture);
-    const { categoryId, sort, currentPage } = useSelector((state) =>state.filter);
+    const {items, status} = useSelector(selectFurnitureData );
+    const { categoryId, sort, currentPage, searchValue } = useSelector(selectFilter);
 
-    const {searchValue} = React.useContext(SearchContext);
     const sortType = sort.sortProperty;
-    // const [isLoading, setIsLoading] = useState(true);
 
     const onChangeCategory = (id) => {
         dispatch(setCategoryId(id))
@@ -87,12 +85,7 @@ export default function Home() {
     }, [])
 
 
-    const furniture = items.filter(obj => {
-        if (obj.title.toLowerCase().includes(searchValue.toLowerCase())) {
-            return true;
-        }
-        return false;
-    }).map((obj) => <Card key={obj.id}{...obj} />);
+    const furniture = items.map((obj) => <Card key={obj.id}{...obj} />);
     const skeletons = [...new Array(6)].map((_, index) => <Skeleton key={index} />);
 
     return (

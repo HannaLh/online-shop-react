@@ -13,9 +13,7 @@ export default function CartItem({ id, title, price, count, imageUrl }) {
     }
 
     const onClickMinus = () => {
-        dispatch(
-            minusItem(id)
-        )
+        dispatch(minusItem(id))
     }
 
     const onClickRemove = () => {
@@ -35,7 +33,7 @@ export default function CartItem({ id, title, price, count, imageUrl }) {
             <div className="counter">
                 <button onClick={onClickPlus} className="btn">+</button>
                 <div className="count">{count}</div>
-                <button onClick={onClickMinus} className="btn">-</button>
+                <button disabled={count === 1} onClick={onClickMinus} className="btn">-</button>
             </div>
             <div className="prices">
                 <div className="amount">${price * count}</div>
