@@ -7,6 +7,13 @@
 	color: black;
 }
 
+.search-container {
+    left: 65%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .search {
 	position: absolute;
 	left: 40px;
@@ -25,7 +32,7 @@
 }
 
 .search:focus {
-	width: 350px;
+	width: 305px;
 }
 
 .expandright {
@@ -34,7 +41,7 @@
 }
 
 .expandright:focus {
-	padding: 13px 16px;
+	padding: 20px 16px;
 }
 
 .clearIcon {

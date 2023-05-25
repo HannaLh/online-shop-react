@@ -4,15 +4,16 @@ import qs from 'qs';
 import { useNavigate } from 'react-router-dom';
 
 import { selectFilter, setCategoryId, setCurrentPage, setFilters } from '../redux/slices/filterSlice';
-import Categories from '../Components/Categories/Categories';
-import Sort, { sortList } from '../Components/Sort/Sort'
-import Card from '../Components/FurnitureBlock/Card'
+import { Categories } from '../Components/Categories/Categories';
+import { Sort, sortList } from '../Components/Sort/Sort'
+import {Card} from '../Components/FurnitureBlock/Card'
 import Skeleton from '../Components/FurnitureBlock/Card/CardSkeleton';
 import Banner from "../Components/Banner/Banner";
-import Pagination from '../Components/Pagination';
-import {  fetchFurniture, selectFurnitureData } from '../redux/slices/furnitureSlice';
+import {Pagination} from '../Components/Pagination/index'
+import { fetchFurniture, selectFurnitureData } from '../redux/slices/furnitureSlice';
+import { useAppDispatch } from '../redux/store';
 
-export default function Home() {
+const Home: React.FC = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -24,28 +25,31 @@ export default function Home() {
 
     const sortType = sort.sortProperty;
 
-    const onChangeCategory = (id) => {
-        dispatch(setCategoryId(id))
-    };
+    const onChangeCategory = React.useCallback((idx: number) => {
+    dispatch(setCategoryId(idx));
+    }, []);
 
-    const onChangePage = (page) => {
+    const onChangePage = (page: number) => {
         dispatch(setCurrentPage(page))
     };
 
     const getFurniture = async () => {
-        const sortBy = sortType.replace('_', '');
-        const category = categoryId > 0 ? `category=${categoryId}` : '';
-        const search = searchValue ? `search=${searchValue}` : '';
+        const sortBy = sort.sortProperty.replace('-', '');
+        const order = sort.sortProperty.includes('-') ? 'asc' : 'desc';
+        const category = categoryId > 0 ? String(categoryId) : '';
+        const search = searchValue;
 
         dispatch(
+            //@ts-ignore
             fetchFurniture({
                 sortBy,
+                order,
                 category,
                 search,
-                currentPage,
+                currentPage: String(currentPage),
             }),
         );
-        window.scrollTo(0, 0);
+            window.scrollTo(0, 0);
     };
 
     useEffect(() => {
@@ -85,7 +89,7 @@ export default function Home() {
     }, [])
 
 
-    const furniture = items.map((obj) => <Card key={obj.id}{...obj} />);
+    const furniture = items.map((obj: any) => <Card key={obj.id}{...obj} />);
     const skeletons = [...new Array(6)].map((_, index) => <Skeleton key={index} />);
 
     return (
@@ -95,7 +99,7 @@ export default function Home() {
                     <div className='container products'>
                         <div className='products-search'>
                             <Categories value={categoryId} onChangeCategory={onChangeCategory}/>
-                            <Sort value={sortType} onChangeSort={(i) => (i)}/>
+                            <Sort value={sortType} />
                         </div> 
                 </div>
                 {status === 'error' ? (
@@ -114,3 +118,5 @@ export default function Home() {
         </>
     )
 }
+
+export default Home;

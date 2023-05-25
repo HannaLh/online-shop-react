@@ -1,10 +1,15 @@
 import React from 'react';
 
-import "./Categories.css"
+import "./Categories.css";
 
-export default function Categories({ value, onChangeCategory }) {
-    const categories = ['All', 'Tables', 'Sofas', 'Chairs', 'Carpet', 'Armchair']; 
+type CategoriesProps = {
+    value: number;
+    onChangeCategory: (idx: number) => void; 
+}
 
+const categories = ['All', 'Tables', 'Sofas', 'Chairs', 'Carpet', 'Armchair']; 
+
+export const Categories: React.FC<CategoriesProps>  = React.memo(({ value, onChangeCategory }) =>{
     return (
         <div className="categories">
             <ul>
@@ -20,4 +25,4 @@ export default function Categories({ value, onChangeCategory }) {
             </ul>
         </div>
     )
-}
+});

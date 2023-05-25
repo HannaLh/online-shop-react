@@ -4,7 +4,15 @@ import "./Card.css";
 
 import { addItem, selectCartItemById } from '../../../redux/slices/cartSlice';
 
-export default function Card({ id, title, price, imageUrl, rating }) {
+type FurnitureBlockProps = {
+    id: string;
+    title: string;
+    price: number;
+    imageUrl: string;
+    rating: number;
+};
+
+export const Card:React.FC<FurnitureBlockProps> = ({ id, title, price, imageUrl, rating }) => {
     const dispatch = useDispatch();
     const cartItem = useSelector(selectCartItemById(id));
     const addedCount = cartItem ? cartItem.count : 0;
