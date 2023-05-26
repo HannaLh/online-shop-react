@@ -3,21 +3,18 @@ import { useSelector, useDispatch } from 'react-redux';
 import qs from 'qs';
 import { useNavigate } from 'react-router-dom';
 
-import { selectFilter, setCategoryId, setCurrentPage, setFilters } from '../redux/slices/filterSlice';
+import { selectFilter, setCategoryId, setCurrentPage, setFilters } from '../redux/filter/slice';
 import { Categories } from '../Components/Categories/Categories';
 import { Sort, sortList } from '../Components/Sort/Sort'
 import {Card} from '../Components/FurnitureBlock/Card'
 import Skeleton from '../Components/FurnitureBlock/Card/CardSkeleton';
-import Banner from "../Components/Banner/Banner";
+import { Banner } from "../Components/Banner/Banner";
 import {Pagination} from '../Components/Pagination/index'
-import { fetchFurniture, selectFurnitureData } from '../redux/slices/furnitureSlice';
-import { useAppDispatch } from '../redux/store';
+import { fetchFurniture, selectFurnitureData } from '../redux/furniture/slice';
 
 const Home: React.FC = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
-    const isSearch = React.useRef(false);
     const isMounted = React.useRef(false);
 
     const {items, status} = useSelector(selectFurnitureData );
@@ -61,32 +58,43 @@ const Home: React.FC = () => {
             };
             const queryString = qs.stringify(params, { skipNulls: true });
             navigate(`/?${queryString}`);
-        }
-        if (!window.location.search) {
-            fetchFurniture();
-        }
-    }, [categoryId, sortType , searchValue, currentPage])
+        };
+    }, [categoryId, sortType, searchValue, currentPage]);
+
+
+    // const params = qs.parse(window.location.search.substring(1)) as unknown as SearchFurnitureParams;
+    // const sortObj = sortList.find((obj) => obj.sortProperty === params.sortBy);
+    // dispatch(
+    //     setFilters({
+    //         searchValue: params.search,
+    //         categoryId: Number(params.category),
+    //         currentPage: Number(params.currentPage),
+    //         sort: sortObj || sortList[0],
+    //     }),
+    // );
 
     useEffect(() => {
         getFurniture();
     }, [categoryId, sortType, searchValue, currentPage])
 
 
-    useEffect(() => {
-        if (window.location.search) {
-            const params = qs.parse(window.location.search.substring(1));
-
-            const sort = sortList.find((obj) => obj.sortProperty === params.sortProperty);
-        
-            dispatch(
-                setFilters({
-                    ...params,
-                    sort,
-                })
-            );
-            isSearch.current = true;
-        }
-    }, [])
+//     useEffect(() => {
+//         if (window.location.search) {
+//             const params = qs.parse(window.location.search.substring(1));
+// 
+//             const sort = sortList.find((obj) => obj.sortProperty === params.sortProperty);
+//         
+//             dispatch(
+//                 setFilters({
+//                     searchValue: params.search,
+//                     categoryId: Number(params.category),
+//                     currentPage: Number(params.currentPage),
+//                     sort: sort || sortList[0],
+//                 })
+//             );
+//             isMounted.current = true;
+//         }
+//     }, [])
 
 
     const furniture = items.map((obj: any) => <Card key={obj.id}{...obj} />);
@@ -99,7 +107,7 @@ const Home: React.FC = () => {
                     <div className='container products'>
                         <div className='products-search'>
                             <Categories value={categoryId} onChangeCategory={onChangeCategory}/>
-                            <Sort value={sortType} />
+                            <Sort value={sort} />
                         </div> 
                 </div>
                 {status === 'error' ? (

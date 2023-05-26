@@ -1,7 +1,7 @@
 import React from 'react'
 import './Search.css'
 import { useDispatch } from 'react-redux';
-import { setSearchValue } from '../../redux/slices/filterSlice';
+import { setSearchValue } from '../../redux/filter/slice';
 import debounce from 'lodash.debounce';
 
 import searchSvg from '../assets/img/icons/search.svg'

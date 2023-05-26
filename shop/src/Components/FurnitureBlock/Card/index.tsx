@@ -1,8 +1,9 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import "./Card.css"; 
+import { CartItem } from '../../../redux/cart/types';
 
-import { addItem, selectCartItemById } from '../../../redux/slices/cartSlice';
+import { addItem, selectCartItemById } from '../../../redux/cart/slice';
 
 type FurnitureBlockProps = {
     id: string;
@@ -12,17 +13,18 @@ type FurnitureBlockProps = {
     rating: number;
 };
 
-export const Card:React.FC<FurnitureBlockProps> = ({ id, title, price, imageUrl, rating }) => {
+export const Card:React.FC<FurnitureBlockProps> = ({ id, title, price, imageUrl }) => {
     const dispatch = useDispatch();
     const cartItem = useSelector(selectCartItemById(id));
     const addedCount = cartItem ? cartItem.count : 0;
 
     const onClickAddProd = () => {
-        const item = {
+        const item: CartItem = {
             id,
             title,
             price,
-            imageUrl
+            imageUrl,
+            count: 0,
         };
         dispatch(addItem(item));
     }

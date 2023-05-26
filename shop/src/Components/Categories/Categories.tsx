@@ -15,14 +15,14 @@ export const Categories: React.FC<CategoriesProps>  = React.memo(({ value, onCha
             <ul>
                 {categories.map((categoryName, i) => (
                     <li
-                        key = {i}
+                        key={i}
                         onClick={() => onChangeCategory(i)}
                         className={value === i ? 'active' : ""}>
                         {categoryName}
                     </li>
-                    ))
+                ))
                 }
             </ul>
         </div>
-    )
+    );
 });

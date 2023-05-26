@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import "./Header.css";
 import Search from '../Search/index';
-import { selectCart } from '../../redux/slices/cartSlice';
+import { selectCart } from '../../redux/cart/slice';
 
 import logoSvg from '../assets/img/logo/logo-maynooth.svg';
 import cartSvg from '../assets/img/icons/cart.svg';

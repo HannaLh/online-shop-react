@@ -1,7 +1,7 @@
 import React from 'react';
 import "./Banner.css";
 
-export default function Banner() {
+export const Banner:React.FC = () => {
     return (
         <section className='offers'>
             <div className='container'>
