@@ -1,5 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
+:root {
+	--mainColor: #FFFFFF;
+	--secondColor: #000000;
+	--mainTextColor: #000000;
+	--secondTextColor: #FFFFFF;
+	--bannerBackground: #F2F2F2;
+	--elementsColor: #842C68;
+}
+
+body {
+	background: var(--mainColor);
+	font-family: 'Roboto', sans-serif;
+	height: 100%;
+	overflow-x: hidden;
+	line-height: 1;
+}
+
+.container {
+	max-width: 1280px;
+	margin: 0 auto;
+}
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -9,25 +31,21 @@ b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
 	margin: 0;
 	padding: 0;
 	border: 0;
 	font-size: 100%;
-	font: inherit;
 	vertical-align: baseline;
 	word-wrap: break-word;
 }
 
-article, aside, details, figcaption, figure, 
+article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
-}
-body {
-	line-height: 1;
 }
 ol, ul {
 	list-style: none;
@@ -38,7 +56,6 @@ blockquote, q {
 blockquote:before, blockquote:after,
 q:before, q:after {
 	content: '';
-	content: none;
 }
 table {
 	border-collapse: collapse;
@@ -56,25 +73,4 @@ button {
 	color: inherit;
 	background-color: transparent;
 	cursor: pointer;
-}
-
-:root {
-    --mainColor: #FFFFFF;
-    --secondColor: #000000;
-    --mainTextColor: #000000;
-    --secondTextColor: #FFFFFF;
-    --bannerBackground: #F2F2F2;
-    --elementsColor: #842C68;
-}
-
-body {
-    background: var(--mainColor);
-    font-family: 'Roboto', sans-serif;
-    height: 100%;
-    overflow-x: hidden;
-}
-
-.container {
-    max-width: 1280px;
-    margin: 0 auto;
 }

@@ -1,0 +1,30 @@
+.cart-empty {
+    margin: 150px auto;
+    background-color:#f6f1eb;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 0;
+    row-gap: 20px;
+
+    &__back-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+        cursor: pointer;
+        padding: 9.5px 18px;
+        font-weight: 700;
+        width: auto;
+        margin: 0 auto;
+        min-width: 18.4615384615rem;
+        max-width: 20.7692307692rem;
+
+        background: #444;
+        color: #fff;
+        text-decoration: none;
+        line-height: 33px;
+    }
+}

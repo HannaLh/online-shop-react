@@ -3,14 +3,16 @@ import {useSelector, useDispatch} from 'react-redux';
 import qs from 'qs';
 import {useNavigate} from 'react-router-dom';
 
-import {selectFilter, setCategoryId, setCurrentPage} from '../redux/filter/slice';
-import {Categories} from '../Components/Categories/Categories';
-import {Sort} from '../Components/Sort/Sort';
-import {Card} from '../Components/FurnitureBlock/Card';
-import Skeleton from '../Components/FurnitureBlock/Card/CardSkeleton';
-import {Banner} from '../Components/Banner/Banner';
-import {Pagination} from '../Components/Pagination/pagination';
-import {fetchFurniture, selectFurnitureData} from '../redux/furniture/slice';
+import {selectFilter, setCategoryId, setCurrentPage} from '../../redux/filter/slice';
+import {Categories} from '../../Components/Categories/Categories';
+import {Sort} from '../../Components/Sort/Sort';
+import {Card} from '../../Components/FurnitureBlock/Card';
+import Skeleton from '../../Components/FurnitureBlock/Card/CardSkeleton';
+import {Banner} from '../../Components/Banner/Banner';
+import {Pagination} from '../../Components/Pagination/pagination';
+import {fetchFurniture, selectFurnitureData} from '../../redux/furniture/slice';
+
+import './Home.scss';
 
 const Home: React.FC = () => {
     const dispatch = useDispatch();
