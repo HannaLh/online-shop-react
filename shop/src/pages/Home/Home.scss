@@ -6,3 +6,17 @@
     column-gap: 40px;
     row-gap: 40px;
 }
+
+.products-search {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 65px 40px 0;
+
+}
+
+.products-search h1 {
+    font-weight: 500;
+    font-size: 27px;
+    line-height: 50px;
+}

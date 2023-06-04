@@ -6,6 +6,8 @@ import NotFound from './pages/NotFound';
 import {Cart} from './pages/Cart/Cart';
 import {MainLayout} from './Components/layouts/MainLayout';
 
+import './App.scss';
+
 export const App = () => (
     <Routes>
         <Route path="/" element={<MainLayout />}>

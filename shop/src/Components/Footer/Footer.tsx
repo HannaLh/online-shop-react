@@ -13,7 +13,7 @@ import googleLogo from '../assets/img/icons/google.svg';
 export const Footer: React.FC = () => {
     return (
         <footer className='footer'>
-            <div className='container'>
+            <div className='main-container'>
                 <div className='nav-wrap'>
                     <nav className='nav-footer-left nav-footer-style'>
                         <ul className='nav-list-footer'>

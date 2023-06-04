@@ -8,7 +8,7 @@ import {Categories} from '../../Components/Categories/Categories';
 import {Sort} from '../../Components/Sort/Sort';
 import {Card} from '../../Components/FurnitureBlock/Card';
 import Skeleton from '../../Components/FurnitureBlock/Card/CardSkeleton';
-import {Banner} from '../../Components/Banner/Banner';
+import {MainBanner} from '../../Components/main-banner/main-banner';
 import {Pagination} from '../../Components/Pagination/pagination';
 import {fetchFurniture, selectFurnitureData} from '../../redux/furniture/slice';
 
@@ -69,8 +69,8 @@ const Home: React.FC = () => {
 
     return (
         <>
-            <Banner />
-            <div className='container'>
+            <MainBanner/>
+            <div className='main-container'>
                 <div className='container products'>
                     <div className='products-search'>
                         <Categories categoryId={categoryId} onChangeCategory={onChangeCategory}/>
@@ -78,9 +78,9 @@ const Home: React.FC = () => {
                     </div>
                 </div>
                 {status === 'error' && (
-                    <div className='container'>
+                    <div className='main-container'>
                         <h2>Cannot load items</h2>
-                        <p>It seems that some kind of error has occured</p>
+                        <p>It seems that some kind of error has occurred</p>
                     </div>
                 )}
                 {status === 'loading' && !items && (

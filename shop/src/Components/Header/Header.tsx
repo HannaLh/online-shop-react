@@ -16,7 +16,7 @@ export const Header = () => {
 
     return (
         <header className='header'>
-            <div className='container'>
+            <div className='main-container'>
                 <div className='header-nav'>
                     <Link to="/">
                         <img width="198" src={logoSvg} alt="logo"></img>
