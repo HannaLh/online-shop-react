@@ -21,6 +21,6 @@ export type SearchFurnitureParams = {
 };
 
 export interface FurnitureSliceState {
-    items: Furniture[];
+    items: Furniture[] | null;
     status: Status;
 }

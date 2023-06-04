@@ -1,22 +1,19 @@
-import { Routes, Route } from "react-router-dom";
+import React from 'react';
+import {Routes, Route} from 'react-router-dom';
 
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
-import { Cart } from "./pages/Cart";
+import {Cart} from './pages/Cart';
+import {MainLayout} from './Components/layouts/MainLayout';
 
-import "./App.css";
-import MainLayout from "./Components/layouts/MainLayout";
+import './App.css';
 
-function App() {
-    return (
-        <Routes>
-            <Route path="/" element={<MainLayout />}>
-                <Route path="" element={<Home />} />
-                <Route path="/cart" element={<Cart />}/>
-                <Route path="*" element={<NotFound />}/>
-            </Route>
-        </Routes>
-    );
-}
-
-export default App;
+export const App = () => (
+    <Routes>
+        <Route path="/" element={<MainLayout />}>
+            <Route path="" element={<Home/>} />
+            <Route path="/cart" element={<Cart />}/>
+            <Route path="*" element={<NotFound />}/>
+        </Route>
+    </Routes>
+);

@@ -1,27 +1,18 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import {useSelector} from 'react-redux';
+import {Link} from 'react-router-dom';
 
-import "./Header.css";
-import Search from '../Search/index';
-import { selectCart } from '../../redux/cart/slice';
+import {Search} from '../Search/search';
+import {selectCart} from '../../redux/cart/slice';
+
+import './Header.css';
 
 import logoSvg from '../assets/img/logo/logo-maynooth.svg';
 import cartSvg from '../assets/img/icons/cart.svg';
 
-export const Header: React.FC = () => {
-    const { items } = useSelector(selectCart);
-    const isMounted = React.useRef(false);
-
-    const totalCount = items.reduce((sum: number, item: any) => sum + item.count, 0);
-
-    React.useEffect(() => {
-    if (isMounted.current) {
-        const json = JSON.stringify(items);
-        localStorage.setItem('cart', json);
-        }
-        isMounted.current = true;
-    }, [items]);
+export const Header = () => {
+    const {items} = useSelector(selectCart);
+    const totalCount = items.reduce((sum, {count}) => sum + count, 0);
 
     return (
         <header className='header'>
@@ -48,5 +39,5 @@ export const Header: React.FC = () => {
                 </div>
             </div>
         </header>
-    )
-}
+    );
+};

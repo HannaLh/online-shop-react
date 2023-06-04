@@ -1,11 +1,13 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import "./Card.css"; 
-import { CartItem } from '../../../redux/cart/types';
+import {useSelector, useDispatch} from 'react-redux';
+import {addItem, selectCartItemById} from '../../../redux/cart/slice';
 
-import { addItem, selectCartItemById } from '../../../redux/cart/slice';
+import './Card.css';
 
-type FurnitureBlockProps = {
+import type {CartItem} from '../../../redux/cart/types';
+
+
+type Props = {
     id: string;
     title: string;
     price: number;
@@ -13,7 +15,7 @@ type FurnitureBlockProps = {
     rating: number;
 };
 
-export const Card:React.FC<FurnitureBlockProps> = ({ id, title, price, imageUrl }) => {
+export const Card = ({id, title, price, imageUrl}: Props) => {
     const dispatch = useDispatch();
     const cartItem = useSelector(selectCartItemById(id));
     const addedCount = cartItem ? cartItem.count : 0;
@@ -27,7 +29,7 @@ export const Card:React.FC<FurnitureBlockProps> = ({ id, title, price, imageUrl 
             count: 0,
         };
         dispatch(addItem(item));
-    }
+    };
 
     return (
         <div className='card'>
@@ -44,5 +46,5 @@ export const Card:React.FC<FurnitureBlockProps> = ({ id, title, price, imageUrl 
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};

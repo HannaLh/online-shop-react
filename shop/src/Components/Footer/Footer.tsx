@@ -1,12 +1,14 @@
 import React from 'react';
-import "./Footer.css";
+import {Link} from 'react-router-dom';
+
+import './Footer.css';
+
 import facebookLogo from '../assets/img/icons/facebook.svg';
 import footerLogo from '../assets/img/logo/maynooth-logo.svg';
 import instaLogo from '../assets/img/icons/insta.svg';
 import twitterLogo from '../assets/img/icons/twitter.svg';
 import googleLogo from '../assets/img/icons/google.svg';
 
-import { Link } from 'react-router-dom';
 
 export const Footer: React.FC = () => {
     return (
@@ -49,5 +51,5 @@ export const Footer: React.FC = () => {
                 </div>
             </div>
         </footer>
-    )
-}
+    );
+};

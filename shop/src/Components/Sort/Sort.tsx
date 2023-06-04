@@ -1,61 +1,58 @@
-import React from 'react';
-import "./Sort.css";
-import { useDispatch } from 'react-redux';
-import { setSort } from '../../redux/filter/slice';
-import { Sort as SortType, SortPropertyEnum } from '../../redux/filter/types';
+import React, {memo, useState, useRef, useEffect} from 'react';
+import {useDispatch} from 'react-redux';
+import {setSort} from '../../redux/filter/slice';
+
+import './Sort.css';
+
+import {Sort as SortType, SortPropertyEnum} from '../../redux/filter/types';
 
 type SortListItem = {
     name: string;
     sortProperty: SortPropertyEnum;
 }
 
-type PopupClick = MouseEvent & {
-    path: Node[];
-};
-
-type SortPopupProps = {
+type Props = {
     value: SortType;
 };
 
 export const sortList: SortListItem[] = [
-    { name: 'Popularity: High to Low', sortProperty: SortPropertyEnum.RATING_DESC },
-    { name: 'Popularity: Low to High', sortProperty: SortPropertyEnum.RATING_ASC },
-    { name: 'Price: High to Low', sortProperty: SortPropertyEnum.PRICE_DESC },
-    { name: 'Price: Low to High', sortProperty: SortPropertyEnum.PRICE_ASC },
+    {name: 'Popularity: High to Low', sortProperty: SortPropertyEnum.RATING_DESC},
+    {name: 'Popularity: Low to High', sortProperty: SortPropertyEnum.RATING_ASC},
+    {name: 'Price: High to Low', sortProperty: SortPropertyEnum.PRICE_DESC},
+    {name: 'Price: Low to High', sortProperty: SortPropertyEnum.PRICE_ASC},
 ];
 
-export const Sort: React.FC<SortPopupProps> = React.memo(({ value }) => {
+export const Sort: React.FC<Props> = memo(({value}) => {
     const dispatch = useDispatch();
-    const sortRef = React.useRef<HTMLButtonElement>(null);
+    const sortRef = useRef<HTMLButtonElement>(null);
 
-    const [isVisible, setIsVisible] = React.useState(false);
-    
+    const [showSortPopup, setShowSortPopup] = useState(false);
+
     const onClickListItem = (obj: SortListItem) => {
         dispatch(setSort(obj));
-        setIsVisible(false);
-    }
+        setShowSortPopup(false);
+    };
 
-    React.useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            const _event = event as PopupClick;
+    const handleClickOutside = (event: MouseEvent) => {
+        if (sortRef.current && !event.composedPath().includes(sortRef.current)) {
+            setShowSortPopup(false);
+        }
+    };
 
-            if (sortRef.current && !_event.composedPath().includes(sortRef.current)) {
-                setIsVisible(false);
-            }
-        };
-        document.body.addEventListener('click', handleClickOutside);
-
-        return () => { document.body.removeEventListener('click', handleClickOutside) }
-
+    useEffect(() => {
+        document.addEventListener('click', handleClickOutside);
+        return () => (
+            document.removeEventListener('click', handleClickOutside)
+        );
     }, []);
 
     return (
         <button ref={sortRef} className="sort">
             <div className="sort__label">
                 <b>Sort by:</b>
-                <span onClick={() => setIsVisible(!isVisible)}>{value.name}</span>
+                <span onClick={() => setShowSortPopup(!showSortPopup)}>{value.name}</span>
             </div>
-            {isVisible && (
+            {showSortPopup && (
                 <div className="sort__popup">
                     <ul>
                         {sortList.map((obj, i) => (
@@ -70,5 +67,5 @@ export const Sort: React.FC<SortPopupProps> = React.memo(({ value }) => {
                 </div>
             )}
         </button>
-    )
+    );
 });

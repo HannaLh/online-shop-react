@@ -1,27 +1,30 @@
-import React from 'react';
+import React, {memo} from 'react';
 
-import "./Categories.css";
+import './Categories.css';
 
-type CategoriesProps = {
-    value: number;
-    onChangeCategory: (idx: number) => void; 
+type Props = {
+    categoryId: number;
+    onChangeCategory: (idx: number) => void;
 }
 
-const categories = ['All', 'Tables', 'Sofas', 'Chairs', 'Carpet', 'Armchair']; 
+const CATEGORIES = ['All', 'Tables', 'Sofas', 'Chairs', 'Carpet', 'Armchair'];
 
-export const Categories: React.FC<CategoriesProps>  = React.memo(({ value, onChangeCategory }) =>{
+export const Categories: React.FC<Props> = memo(({categoryId, onChangeCategory}) => {
+    const onCategoryClick = (idx: number) => () => {
+        onChangeCategory(idx);
+    };
+
     return (
         <div className="categories">
             <ul>
-                {categories.map((categoryName, i) => (
+                {CATEGORIES.map((categoryName, i) => (
                     <li
                         key={i}
-                        onClick={() => onChangeCategory(i)}
-                        className={value === i ? 'active' : ""}>
+                        onClick={onCategoryClick(i)}
+                        className={categoryId === i ? 'active' : ''}>
                         {categoryName}
                     </li>
-                ))
-                }
+                ))}
             </ul>
         </div>
     );

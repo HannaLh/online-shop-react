@@ -2,6 +2,12 @@
     "name": "my-app",
     "version": "0.1.0",
     "private": true,
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject"
+    },
     "dependencies": {
         "@emotion/react": "^11.11.0",
         "@emotion/styled": "^11.11.0",
@@ -26,7 +32,6 @@
         "json-server": "^0.17.3",
         "lodash": "^4.17.21",
         "lodash-es": "^4.17.21",
-        "lodash.debounce": "^4.0.8",
         "qs": "^6.11.2",
         "react": "^18.2.0",
         "react-content-loader": "^6.2.1",
@@ -43,17 +48,29 @@
         "typescript": "^5.0.4",
         "web-vitals": "^2.1.4"
     },
-    "scripts": {
-        "start": "react-scripts start",
-        "build": "react-scripts build",
-        "test": "react-scripts test",
-        "eject": "react-scripts eject"
-    },
     "eslintConfig": {
         "extends": [
             "react-app",
             "react-app/jest"
-        ]
+        ],
+        "rules": {
+            "semi": 2,
+            "comma-dangle": [
+                "error", "always-multiline"
+            ],
+            "require-atomic-updates": 0,
+            "no-redeclare": 0,
+            "no-shadow": 0,
+            "quotes": ["error", "single"],
+            "quote-props": [
+                "error", "as-needed"
+            ],
+            "object-shorthand": ["error", "always"],
+            "object-curly-spacing": ["error", "never"],
+            "eol-last": ["error", "always"],
+            "no-undef": 0,
+            "no-unused-vars": 0
+        }
     },
     "browserslist": {
         "production": [
