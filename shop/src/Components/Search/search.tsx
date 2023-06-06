@@ -17,9 +17,11 @@ export const Search = () => {
         setSearchValue('');
     };
 
-    const updateSearchValue = useCallback((nextSearchValue: string) => (
-        debounce(value => dispatch(setSearchValueAction(value)), 200)(nextSearchValue)
-    ), [dispatch]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const updateSearchValue = useCallback(debounce((str: string) => (
+            dispatch(setSearchValueAction(str))
+        ), 200),
+    []);
 
     const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
         const nextSearchValue = event.target.value;
