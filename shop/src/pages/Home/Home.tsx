@@ -76,7 +76,7 @@ const Home: React.FC = () => {
                     <Sort value={sort} />
                 </div>
                 {status === 'error' && (
-                    <div className="main-container">
+                    <div className="home__error-message">
                         <h2>Cannot load items</h2>
                         <p>It seems that some kind of error has occurred</p>
                     </div>
