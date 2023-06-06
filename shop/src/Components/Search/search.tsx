@@ -3,9 +3,8 @@ import debounce from 'lodash/debounce';
 import {useDispatch} from 'react-redux';
 import {setSearchValue as setSearchValueAction} from '../../redux/filter/slice';
 
-import './Search.css';
+import './search.scss';
 
-import searchSvg from '../assets/img/icons/search.svg';
 import removeIcon from '../assets/img/icons/remove-icon.svg';
 
 export const Search = () => {
@@ -15,7 +14,7 @@ export const Search = () => {
 
     const onClickClear = () => {
         dispatch(setSearchValueAction(''));
-        inputRef.current?.focus();
+        setSearchValue('');
     };
 
     const updateSearchValue = useCallback((nextSearchValue: string) => (
@@ -29,24 +28,19 @@ export const Search = () => {
         setSearchValue(nextSearchValue);
     };
 
-
     return (
-        <div className="search-container">
-            <label htmlFor="searchright">
-                <img src={searchSvg} alt="search icon"></img>
-                {searchValue && (
-                    <img onClick={onClickClear} className="clearIcon" src={removeIcon} alt="Remove icon"/>
-                )}
-            </label>
+        <div className="search">
             <input
                 ref={inputRef}
                 value={searchValue}
                 onChange={onChangeInput}
-                className="search expandright"
-                id="searchright"
-                type="search"
+                className="search__input"
+                type="text"
                 placeholder="Search"
             />
+            {searchValue && (
+                <img onClick={onClickClear} className="search__clear-icon" src={removeIcon} alt="Remove icon"/>
+            )}
         </div>
     );
 };

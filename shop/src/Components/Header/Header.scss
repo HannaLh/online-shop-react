@@ -26,11 +26,14 @@
     }
     &__action-panel {
         display: flex;
+        justify-content: end;
+        align-items: center;
         position: relative;
+        width: 300px;
     }
     &__cart-link {
         position: relative;
-        margin-right: 16px;
+        margin-left: 16px;
     }
     &__total-items-count {
         position: absolute;

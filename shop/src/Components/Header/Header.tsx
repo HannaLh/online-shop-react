@@ -27,11 +27,11 @@ export const Header = () => {
                     <a className="header__main-link" href="/">contact</a>
                 </nav>
                 <div className="header__action-panel">
+                    <Search/>
                     <Link to="/cart" className="header__cart-link">
                         <span className="header__total-items-count">{totalCount}</span>
                         <img src={cartSvg} alt="Cart icon"/>
                     </Link>
-                    <Search/>
                 </div>
             </div>
         </header>
