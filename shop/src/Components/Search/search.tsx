@@ -1,4 +1,4 @@
-import React, {useRef, useState, useCallback} from 'react';
+import React, {useState, useCallback} from 'react';
 import debounce from 'lodash/debounce';
 import {useDispatch} from 'react-redux';
 import {setSearchValue as setSearchValueAction} from '../../redux/filter/slice';
@@ -10,7 +10,6 @@ import removeIcon from '../assets/img/icons/remove-icon.svg';
 export const Search = () => {
     const dispatch = useDispatch();
     const [searchValue, setSearchValue] = useState<string>('');
-    const inputRef = useRef<HTMLInputElement>(null);
 
     const onClickClear = () => {
         dispatch(setSearchValueAction(''));
@@ -33,7 +32,6 @@ export const Search = () => {
     return (
         <div className="search">
             <input
-                ref={inputRef}
                 value={searchValue}
                 onChange={onChangeInput}
                 className="search__input"
