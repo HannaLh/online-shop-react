@@ -6,8 +6,8 @@ import {useNavigate} from 'react-router-dom';
 import {selectFilter, setCategoryId, setCurrentPage} from '../../redux/filter/slice';
 import {Categories} from '../../Components/Categories/Categories';
 import {Sort} from '../../Components/Sort/Sort';
-import {Card} from '../../Components/FurnitureBlock/Card';
-import Skeleton from '../../Components/FurnitureBlock/Card/CardSkeleton';
+import {FurnitureCard} from '../../Components/furniture-card/furniture-card';
+import {Skeleton} from '../../Components/furniture-card/furniture-card-skeleton';
 import {MainBanner} from '../../Components/main-banner/main-banner';
 import {Pagination} from '../../Components/Pagination/pagination';
 import {fetchFurniture, selectFurnitureData} from '../../redux/furniture/slice';
@@ -64,37 +64,35 @@ const Home: React.FC = () => {
         getFurniture();
     }, [getFurniture]);
 
-    const furniture = (items || []).map((obj: any) => <Card key={obj.id}{...obj} />);
+    const furniture = (items || []).map((obj: any) => <FurnitureCard key={obj.id}{...obj} />);
     const skeletons = [...new Array(6)].map((_, index) => <Skeleton key={index} />);
 
     return (
-        <>
+        <div className="home">
             <MainBanner/>
-            <div className='main-container'>
-                <div className='container products'>
-                    <div className='products-search'>
-                        <Categories categoryId={categoryId} onChangeCategory={onChangeCategory}/>
-                        <Sort value={sort} />
-                    </div>
+            <div className="main-container">
+                <div className="home__products-search">
+                    <Categories categoryId={categoryId} onChangeCategory={onChangeCategory}/>
+                    <Sort value={sort} />
                 </div>
                 {status === 'error' && (
-                    <div className='main-container'>
+                    <div className="main-container">
                         <h2>Cannot load items</h2>
                         <p>It seems that some kind of error has occurred</p>
                     </div>
                 )}
                 {status === 'loading' && !items && (
-                    <div className="card-flex">{skeletons}</div>
+                    <div className="home__products-container">{skeletons}</div>
                 )}
                 {status === 'completed' && (
-                    <div className="card-flex">{furniture}</div>
+                    <div className="home__products-container">{furniture}</div>
                 )}
                 <Pagination
                     currentPage={currentPage}
                     onChangePage={onChangePage}
                 />
             </div>
-        </>
+        </div>
     );
 };
 

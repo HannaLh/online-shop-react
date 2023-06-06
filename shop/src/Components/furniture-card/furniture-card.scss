@@ -1,0 +1,55 @@
+.furniture-card {
+    display: flex;
+    flex-direction: column;
+
+    border-bottom: 1px solid #C4C4C4;
+    width: 310px;
+    min-height: 310px;
+
+    &__price-container {
+        display: flex;
+        justify-content: center;
+        padding: 12px 0 0 0;
+        column-gap: 40px;
+        min-height: 60px;
+    }
+    &__price-title {
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 21px;
+        width: 200px;
+    }
+    &__price {
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 26px;
+        color: var(--elementsColor);
+    }
+    &__add-to {
+        display: flex;
+        justify-content: center;
+    }
+    &__add-to-btn {
+        color: var(--mainColor);
+        background-color: var(--elementsColor);
+        width: 150px;
+        padding: 10px 14px;
+        margin: 12px 0 27px 0;
+        border-radius: 5px;
+        box-shadow: 0 2px 2px 1px rgb(189, 189, 191);
+        text-align: center;
+        display: flex;
+        justify-content: space-between;
+        column-gap: 5px;
+    }
+    &__add-to-count {
+        width: 16px;
+        height: 100%;
+        color: var(--elementsColor);
+        background-color: #F2F2F2;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        font-weight: 600;
+    }
+}

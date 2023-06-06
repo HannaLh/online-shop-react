@@ -1,0 +1,38 @@
+.sort {
+    position: relative;
+
+    &__label {
+        display: flex;
+        align-items: center;
+    }
+    &__sort-by-title {
+        margin-right: 8px;
+    }
+    &__sort-by-value {
+        border-bottom: 1px dashed;
+        cursor: pointer;
+        font-size: 18px;
+    }
+    &__popup {
+        position: absolute;
+        right: 0;
+        margin-top: 15px;
+        background: #fff;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.09);
+        border-radius: 10px;
+        overflow: hidden;
+        padding: 10px 0;
+        width: 215px;
+    }
+    &__popup-item {
+        padding: 12px 20px;
+        cursor: pointer;
+
+        &_active {
+            font-weight: bold;
+        }
+        &:hover, &_active {
+            background: rgba(254, 95, 30, 0.05);
+        }
+    }
+}

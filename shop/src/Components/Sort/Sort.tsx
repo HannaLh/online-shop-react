@@ -2,7 +2,7 @@ import React, {memo, useState, useRef, useEffect} from 'react';
 import {useDispatch} from 'react-redux';
 import {setSort} from '../../redux/filter/slice';
 
-import './Sort.css';
+import './Sort.scss';
 
 import {Sort as SortType, SortPropertyEnum} from '../../redux/filter/types';
 
@@ -49,21 +49,19 @@ export const Sort: React.FC<Props> = memo(({value}) => {
     return (
         <button ref={sortRef} className="sort">
             <div className="sort__label">
-                <b>Sort by:</b>
-                <span onClick={() => setShowSortPopup(!showSortPopup)}>{value.name}</span>
+                <b className="sort__sort-by-title">Sort by:</b>
+                <span className="sort__sort-by-value" onClick={() => setShowSortPopup(!showSortPopup)}>{value.name}</span>
             </div>
             {showSortPopup && (
                 <div className="sort__popup">
-                    <ul>
-                        {sortList.map((obj, i) => (
-                            <li
-                                key={i}
-                                onClick={() => onClickListItem(obj)}
-                                className={value.sortProperty === obj.sortProperty ? 'active' : ''}>
-                                {obj.name}
-                            </li>
-                        ))}
-                    </ul>
+                    {sortList.map((obj, i) => (
+                        <div
+                            key={i}
+                            onClick={() => onClickListItem(obj)}
+                            className={`sort__popup-item ${value.sortProperty === obj.sortProperty ? 'sort__popup-item_active' : ''}`}>
+                            {obj.name}
+                        </div>
+                    ))}
                 </div>
             )}
         </button>
