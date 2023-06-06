@@ -1,6 +1,6 @@
 import React, {memo} from 'react';
 
-import './Categories.css';
+import './Categories.scss';
 
 type Props = {
     categoryId: number;
@@ -16,12 +16,12 @@ export const Categories: React.FC<Props> = memo(({categoryId, onChangeCategory})
 
     return (
         <div className="categories">
-            <ul>
+            <ul className="categories__container">
                 {CATEGORIES.map((categoryName, i) => (
                     <li
                         key={i}
                         onClick={onCategoryClick(i)}
-                        className={categoryId === i ? 'active' : ''}>
+                        className={`categories__item ${categoryId === i ? 'categories__item_active' : ''}`}>
                         {categoryName}
                     </li>
                 ))}
