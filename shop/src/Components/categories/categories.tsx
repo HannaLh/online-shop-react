@@ -1,6 +1,6 @@
 import React, {memo} from 'react';
 
-import './Categories.scss';
+import './categories.scss';
 
 type Props = {
     categoryId: number;
@@ -9,7 +9,7 @@ type Props = {
 
 const CATEGORIES = ['All', 'Tables', 'Sofas', 'Chairs', 'Carpet', 'Armchair'];
 
-export const Categories: React.FC<Props> = memo(({categoryId, onChangeCategory}) => {
+export const Categories = memo(({categoryId, onChangeCategory}: Props) => {
     const onCategoryClick = (idx: number) => () => {
         onChangeCategory(idx);
     };

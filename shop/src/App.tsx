@@ -1,10 +1,10 @@
 import React from 'react';
 import {Routes, Route} from 'react-router-dom';
 
-import Home from './pages/Home/Home';
-import NotFound from './pages/NotFound';
-import {Cart} from './pages/Cart/Cart';
-import {MainLayout} from './Components/layouts/MainLayout';
+import Home from './pages/home';
+import Cart from './pages/cart';
+import NotFoundBlock from './pages/not-found-block';
+import {MainLayout} from './components/main-layout/main-layout';
 
 import './App.scss';
 
@@ -13,7 +13,7 @@ export const App = () => (
         <Route path="/" element={<MainLayout />}>
             <Route path="" element={<Home/>} />
             <Route path="/cart" element={<Cart />}/>
-            <Route path="*" element={<NotFound />}/>
+            <Route path="*" element={<NotFoundBlock/>}/>
         </Route>
     </Routes>
 );

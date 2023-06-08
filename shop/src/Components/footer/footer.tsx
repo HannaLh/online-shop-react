@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-import './Footer.scss';
+import './footer.scss';
 
 import facebookLogo from '../assets/img/icons/facebook.svg';
 import footerLogo from '../assets/img/logo/maynooth-logo.svg';

@@ -6,9 +6,9 @@ import {CartItem} from './cart-item/cart-item';
 import {CartEmpty} from './cart-empty/cart-empty';
 import {clearItems, selectCart} from '../../redux/cart/slice';
 
-import './Cart.scss';
+import './cart.scss';
 
-export const Cart: React.FC = () => {
+export const Cart = () => {
     const dispatch = useDispatch();
     const {totalPrice, items} = useSelector(selectCart);
     const totalCount = (items || null).reduce((sum: number, item: any) => sum + item.count, 0);

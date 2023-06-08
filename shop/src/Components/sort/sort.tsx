@@ -2,7 +2,7 @@ import React, {memo, useState, useRef, useEffect} from 'react';
 import {useDispatch} from 'react-redux';
 import {setSort} from '../../redux/filter/slice';
 
-import './Sort.scss';
+import './sort.scss';
 
 import {Sort as SortType, SortPropertyEnum} from '../../redux/filter/types';
 
@@ -22,7 +22,7 @@ export const sortList: SortListItem[] = [
     {name: 'Price: Low to High', sortProperty: SortPropertyEnum.PRICE_ASC},
 ];
 
-export const Sort: React.FC<Props> = memo(({value}) => {
+export const Sort = memo(({value}: Props) => {
     const dispatch = useDispatch();
     const sortRef = useRef<HTMLButtonElement>(null);
 

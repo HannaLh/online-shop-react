@@ -2,10 +2,10 @@ import React from 'react';
 import {useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
 
-import {Search} from '../Search/search';
+import {Search} from '../search/search';
 import {selectCart} from '../../redux/cart/slice';
 
-import './Header.scss';
+import './header.scss';
 
 import logoSvg from '../assets/img/logo/logo-maynooth.svg';
 import cartSvg from '../assets/img/icons/cart.svg';

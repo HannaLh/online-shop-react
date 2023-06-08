@@ -1,10 +1,10 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import cartEmptyImg from '../../../Components/assets/img/icons/empty-cart.png';
+import cartEmptyImg from '../../../components/assets/img/icons/empty-cart.png';
 
 import './cart-empty.scss';
 
-export const CartEmpty: React.FC = () => (
+export const CartEmpty = () => (
     <div className="cart-empty">
         <img src={cartEmptyImg} alt="Empty cart" width="40" height="40"/>
         <h2>

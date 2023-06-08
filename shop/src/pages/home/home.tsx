@@ -4,17 +4,17 @@ import qs from 'qs';
 import {useNavigate} from 'react-router-dom';
 
 import {selectFilter, setCategoryId, setCurrentPage} from '../../redux/filter/slice';
-import {Categories} from '../../Components/Categories/Categories';
-import {Sort} from '../../Components/Sort/Sort';
-import {FurnitureCard} from '../../Components/furniture-card/furniture-card';
-import {Skeleton} from '../../Components/furniture-card/furniture-card-skeleton';
-import {MainBanner} from '../../Components/main-banner/main-banner';
-import {Pagination} from '../../Components/Pagination/pagination';
+import {Categories} from '../../components/categories/categories';
+import {Sort} from '../../components/sort/sort';
+import {FurnitureCard} from '../../components/furniture-card/furniture-card';
+import {Skeleton} from '../../components/furniture-card/furniture-card-skeleton';
+import {MainBanner} from '../../components/main-banner/main-banner';
+import {Pagination} from '../../components/pagination/pagination';
 import {fetchFurniture, selectFurnitureData} from '../../redux/furniture/slice';
 
-import './Home.scss';
+import './home.scss';
 
-const Home: React.FC = () => {
+export const Home = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -95,5 +95,3 @@ const Home: React.FC = () => {
         </div>
     );
 };
-
-export default Home;
