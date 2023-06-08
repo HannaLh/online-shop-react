@@ -3,14 +3,14 @@ import {useSelector, useDispatch} from 'react-redux';
 import qs from 'qs';
 import {useNavigate} from 'react-router-dom';
 
-import {selectFilter, setCategoryId, setCurrentPage} from '../../redux/filter/slice';
+import {filterSelector, setCategoryId, setCurrentPage} from 'store/filter/slice';
 import {Categories} from '../../components/categories/categories';
 import {Sort} from '../../components/sort/sort';
 import {FurnitureCard} from '../../components/furniture-card/furniture-card';
 import {Skeleton} from '../../components/furniture-card/furniture-card-skeleton';
 import {MainBanner} from '../../components/main-banner/main-banner';
 import {Pagination} from '../../components/pagination/pagination';
-import {fetchFurniture, selectFurnitureData} from '../../redux/furniture/slice';
+import {fetchFurniture, furnitureDataSelector} from 'store/furniture/slice';
 
 import './home.scss';
 
@@ -18,8 +18,8 @@ export const Home = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const {items, status} = useSelector(selectFurnitureData);
-    const {categoryId, sort, currentPage, searchValue} = useSelector(selectFilter);
+    const {items, status} = useSelector(furnitureDataSelector);
+    const {categoryId, sort, currentPage, searchValue} = useSelector(filterSelector);
 
     const sortType = sort.sortProperty;
 

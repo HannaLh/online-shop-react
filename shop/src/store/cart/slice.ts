@@ -2,7 +2,7 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {getTotalPrice} from '../../utils/getTotalPrice';
 
 import type {CartItem, CartSliceState} from './types';
-import type {RootState} from '../store';
+import type {RootState} from '../index';
 
 
 const initialState: CartSliceState = {
@@ -48,9 +48,9 @@ export const cartSlice = createSlice({
     },
 });
 
-export const selectCart = (state: RootState) => state.cart;
-export const selectCartItemById = (id: string) => (state: RootState) =>
-    selectCart(state).items.find((obj) => obj.id === id);
+export const cartSelector = (state: RootState) => state.cart;
+export const cartItemByIdSelector = (id: string) => (state: RootState) =>
+    cartSelector(state).items.find((obj) => obj.id === id);
 
 export const {addItem, removeItem, clearItems, minusItem, plusItem} = cartSlice.actions;
 export default cartSlice.reducer;

@@ -1,10 +1,10 @@
 import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {addItem, selectCartItemById} from '../../redux/cart/slice';
+import {addItem, cartItemByIdSelector} from 'store/cart/slice';
 
 import './furniture-card.scss';
 
-import type {CartItem} from '../../redux/cart/types';
+import type {CartItem} from 'store/cart/types';
 
 
 type Props = {
@@ -17,7 +17,7 @@ type Props = {
 
 export const FurnitureCard = ({id, title, price, imageUrl}: Props) => {
     const dispatch = useDispatch();
-    const cartItem = useSelector(selectCartItemById(id));
+    const cartItem = useSelector(cartItemByIdSelector(id));
     const addedCount = cartItem ? cartItem.count : 0;
 
     const onClickAddProd = () => {

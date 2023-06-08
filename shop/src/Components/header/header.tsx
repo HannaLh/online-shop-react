@@ -3,7 +3,7 @@ import {useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
 
 import {Search} from '../search/search';
-import {selectCart} from '../../redux/cart/slice';
+import {cartSelector} from 'store/cart/slice';
 
 import './header.scss';
 
@@ -11,7 +11,7 @@ import logoSvg from '../assets/img/logo/logo-maynooth.svg';
 import cartSvg from '../assets/img/icons/cart.svg';
 
 export const Header = () => {
-    const {items} = useSelector(selectCart);
+    const {items} = useSelector(cartSelector);
     const totalCount = items.reduce((sum, {count}) => sum + count, 0);
 
     return (

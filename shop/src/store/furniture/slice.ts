@@ -3,7 +3,7 @@ import axios from 'axios';
 import pickBy from 'lodash/pickBy';
 
 import {Furniture, FurnitureSliceState, SearchFurnitureParams, Status} from './types';
-import {RootState} from '../store';
+import {RootState} from '../index';
 
 
 export const fetchFurniture = createAsyncThunk<Furniture[], SearchFurnitureParams>(
@@ -54,7 +54,7 @@ const furnitureSlice = createSlice({
     },
 });
 
-export const selectFurnitureData = (state: RootState) => state.furniture;
+export const furnitureDataSelector = (state: RootState) => state.furniture;
 export const {setItems} = furnitureSlice.actions;
 export default furnitureSlice.reducer;
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import {useDispatch} from 'react-redux';
-import {plusItem, minusItem, removeItem} from '../../../redux/cart/slice';
+import {plusItem, minusItem, removeItem} from 'store/cart/slice';
 
 import './cart-item.scss';
 
