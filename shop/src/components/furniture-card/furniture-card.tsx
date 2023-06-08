@@ -1,10 +1,10 @@
 import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {addItem, cartItemByIdSelector} from 'store/cart/slice';
+import {addItem, cartItemByIdSelector} from 'store/reducers/cart/cart';
 
 import './furniture-card.scss';
 
-import type {CartItem} from 'store/cart/types';
+import type {CartItem} from 'store/reducers/cart/types';
 
 
 type Props = {

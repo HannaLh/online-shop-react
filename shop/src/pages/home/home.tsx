@@ -3,14 +3,14 @@ import {useSelector, useDispatch} from 'react-redux';
 import qs from 'qs';
 import {useNavigate} from 'react-router-dom';
 
-import {filterSelector, setCategoryId, setCurrentPage} from 'store/filter/slice';
+import {filterSelector, setCategoryId, setCurrentPage} from 'store/reducers/filter/filter';
 import {Categories} from '../../components/categories/categories';
 import {Sort} from '../../components/sort/sort';
 import {FurnitureCard} from '../../components/furniture-card/furniture-card';
 import {Skeleton} from '../../components/furniture-card/furniture-card-skeleton';
 import {MainBanner} from '../../components/main-banner/main-banner';
 import {Pagination} from '../../components/pagination/pagination';
-import {fetchFurniture, furnitureDataSelector} from 'store/furniture/slice';
+import {fetchFurniture, furnitureDataSelector} from 'store/reducers/furniture/furniture';
 
 import './home.scss';
 

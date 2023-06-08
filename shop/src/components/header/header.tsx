@@ -3,7 +3,7 @@ import {useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
 
 import {Search} from '../search/search';
-import {cartSelector} from 'store/cart/slice';
+import {cartSelector} from 'store/reducers/cart/cart';
 
 import './header.scss';
 

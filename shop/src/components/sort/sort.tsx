@@ -1,10 +1,10 @@
 import React, {memo, useState, useRef, useEffect} from 'react';
 import {useDispatch} from 'react-redux';
-import {setSort} from 'store/filter/slice';
+import {setSort} from 'store/reducers/filter/filter';
 
 import './sort.scss';
 
-import {Sort as SortType, SortPropertyEnum} from 'store/filter/types';
+import {Sort as SortType, SortPropertyEnum} from 'store/reducers/filter/types';
 
 type SortListItem = {
     name: string;

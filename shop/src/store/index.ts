@@ -1,15 +1,5 @@
 import {configureStore} from '@reduxjs/toolkit';
-import {combineReducers} from 'redux';
-
-import filter from 'store/filter/slice';
-import cart from 'store/cart/slice';
-import furniture from 'store/furniture/slice';
-
-const reducer = combineReducers({
-    filter,
-    cart,
-    furniture,
-});
+import {reducer} from './reducers';
 
 export const store = configureStore({
     reducer,
