@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import cartEmptyImg from '../../../components/assets/img/icons/empty-cart.png';
+import cartEmptyImg from 'assets/img/icons/empty-cart.png';
 
 import './cart-empty.scss';
 

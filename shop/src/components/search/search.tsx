@@ -5,7 +5,7 @@ import {setSearchValue as setSearchValueAction} from 'store/reducers/filter/filt
 
 import './search.scss';
 
-import removeIcon from '../assets/img/icons/remove-icon.svg';
+import removeIcon from 'assets/img/icons/remove-icon.svg';
 
 export const Search = () => {
     const dispatch = useDispatch();

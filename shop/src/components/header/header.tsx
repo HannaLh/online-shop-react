@@ -7,8 +7,8 @@ import {cartSelector} from 'store/reducers/cart/cart';
 
 import './header.scss';
 
-import logoSvg from '../assets/img/logo/logo-maynooth.svg';
-import cartSvg from '../assets/img/icons/cart.svg';
+import logoSvg from 'assets/img/logo/logo-maynooth.svg';
+import cartSvg from 'assets/img/icons/cart.svg';
 
 export const Header = () => {
     const {items} = useSelector(cartSelector);
