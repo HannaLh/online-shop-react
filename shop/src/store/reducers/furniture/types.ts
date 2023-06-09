@@ -6,12 +6,6 @@ export type Furniture = {
     rating: number;
 };
 
-export enum Status {
-    LOADING = 'loading',
-    SUCCESS = 'completed',
-    ERROR = 'error',
-}
-
 export type SearchFurnitureParams = {
     sortBy: string;
     order: string;
@@ -22,5 +16,6 @@ export type SearchFurnitureParams = {
 
 export interface FurnitureSliceState {
     items: Furniture[] | null;
-    status: Status;
+    loading: boolean,
+    error: boolean | null,
 }

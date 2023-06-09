@@ -1,32 +1,15 @@
-import {createSlice, createAsyncThunk, PayloadAction} from '@reduxjs/toolkit';
-import axios from 'axios';
-import pickBy from 'lodash/pickBy';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
-import {Furniture, FurnitureSliceState, SearchFurnitureParams, Status} from './types';
+import {fetchFurniture} from './actions';
+
+import {Furniture, FurnitureSliceState} from './types';
 import {RootState} from 'store';
 
 
-export const fetchFurniture = createAsyncThunk<Furniture[], SearchFurnitureParams>(
-    'furniture/fetchFurnitureStatus ',
-    async (params) => {
-        const {sortBy, category, search, currentPage, order} = params;
-        const {data} = await axios.get<Furniture[]>('https://645513ffa74f994b3351784a.mockapi.io/items', {
-            params: pickBy({
-                page: currentPage,
-                limit: 4,
-                category,
-                sortBy,
-                order,
-                search,
-            }),
-        });
-        return data;
-    },
-);
-
 const initialState: FurnitureSliceState = {
     items: null,
-    status: Status.LOADING, // loading | success | error
+    loading: false,
+    error: null,
 };
 
 const furnitureSlice = createSlice({
@@ -40,16 +23,15 @@ const furnitureSlice = createSlice({
     extraReducers: (builder) => {
         builder
         .addCase(fetchFurniture.pending, (state) => {
-            state.status = Status.LOADING;
-            state.items = [];
+            state.loading = true;
         })
         .addCase(fetchFurniture.fulfilled, (state, action) => {
             state.items = action.payload;
-            state.status = Status.SUCCESS;
+            state.loading = false;
         })
         .addCase(fetchFurniture.rejected, (state) => {
-            state.status = Status.ERROR;
-            state.items = [];
+            state.loading = false;
+            state.error = true;
         });
     },
 });
@@ -57,4 +39,3 @@ const furnitureSlice = createSlice({
 export const furnitureDataSelector = (state: RootState) => state.furniture;
 export const {setItems} = furnitureSlice.actions;
 export default furnitureSlice.reducer;
-
