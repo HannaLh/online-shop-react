@@ -1,5 +1,5 @@
 import React from 'react';
-import {useDispatch} from 'react-redux';
+import {useAppDispatch} from 'store';
 import {plusItem, minusItem, removeItem} from 'store/reducers/cart/cart';
 
 import './cart-item.scss';
@@ -13,7 +13,7 @@ type Props = {
 };
 
 export const CartItem = ({id, title, price, count, imageUrl}: Props) => {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     const onClickPlus = () => {
         dispatch(plusItem(id));

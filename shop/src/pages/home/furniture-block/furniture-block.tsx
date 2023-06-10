@@ -1,6 +1,6 @@
 import React from 'react';
-import {useSelector} from 'react-redux';
 
+import {useAppSelector} from 'store';
 import {furnitureDataSelector} from 'store/reducers/furniture/furniture';
 import {SkeletonView} from './skeleton/skeleton-view';
 import {FurnitureCard} from './furniture-card/furniture-card';
@@ -10,7 +10,7 @@ import {BoxLoading} from 'components/box-loading/box-loading';
 import './furniture-block.scss';
 
 export const FurnitureBlock = () => {
-    const {items, error, loading} = useSelector(furnitureDataSelector);
+    const {items, error, loading} = useAppSelector(furnitureDataSelector);
 
     if (error) {
         return (

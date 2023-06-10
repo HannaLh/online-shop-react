@@ -1,7 +1,7 @@
 import React from 'react';
-import {useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
 
+import {useAppSelector} from 'store';
 import {Search} from '../search/search';
 import {cartSelector} from 'store/reducers/cart/cart';
 
@@ -11,7 +11,7 @@ import logoSvg from 'assets/img/logo/logo-maynooth.svg';
 import cartSvg from 'assets/img/icons/cart.svg';
 
 export const Header = () => {
-    const {items} = useSelector(cartSelector);
+    const {items} = useAppSelector(cartSelector);
     const totalCount = items.reduce((sum, {count}) => sum + count, 0);
 
     return (

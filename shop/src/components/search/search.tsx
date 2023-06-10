@@ -1,6 +1,6 @@
 import React, {useState, useCallback} from 'react';
 import debounce from 'lodash/debounce';
-import {useDispatch} from 'react-redux';
+import {useAppDispatch} from 'store';
 import {setSearchValue as setSearchValueAction} from 'store/reducers/filter/filter';
 
 import './search.scss';
@@ -8,7 +8,7 @@ import './search.scss';
 import removeIcon from 'assets/img/icons/remove-icon.svg';
 
 export const Search = () => {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const [searchValue, setSearchValue] = useState<string>('');
 
     const onClickClear = () => {

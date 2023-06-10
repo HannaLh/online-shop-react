@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {useSelector, useDispatch} from 'react-redux';
 
+import {useAppSelector, useAppDispatch} from 'store';
 import {CartItem} from './cart-item/cart-item';
 import {CartEmpty} from './cart-empty/cart-empty';
 import {clearItems, cartSelector} from 'store/reducers/cart/cart';
@@ -9,8 +9,8 @@ import {clearItems, cartSelector} from 'store/reducers/cart/cart';
 import './cart.scss';
 
 export const Cart = () => {
-    const dispatch = useDispatch();
-    const {totalPrice, items} = useSelector(cartSelector);
+    const dispatch = useAppDispatch();
+    const {totalPrice, items} = useAppSelector(cartSelector);
     const totalCount = (items || null).reduce((sum: number, item: any) => sum + item.count, 0);
 
     const onClickClear = () => {

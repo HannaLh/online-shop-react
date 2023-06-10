@@ -1,5 +1,5 @@
 import React from 'react';
-import {useSelector, useDispatch} from 'react-redux';
+import {useAppSelector, useAppDispatch} from 'store';
 import {addItem, cartItemByIdSelector} from 'store/reducers/cart/cart';
 
 import './furniture-card.scss';
@@ -16,8 +16,8 @@ type Props = {
 };
 
 export const FurnitureCard = ({id, title, price, imageUrl}: Props) => {
-    const dispatch = useDispatch();
-    const cartItem = useSelector(cartItemByIdSelector(id));
+    const dispatch = useAppDispatch();
+    const cartItem = useAppSelector(cartItemByIdSelector(id));
     const addedCount = cartItem ? cartItem.count : 0;
 
     const onClickAddProd = () => {

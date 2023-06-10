@@ -1,6 +1,6 @@
 import React, {memo, useState, useRef, useEffect, useCallback} from 'react';
-import {useDispatch} from 'react-redux';
 
+import {useAppDispatch} from 'store';
 import {setSort} from 'store/reducers/filter/filter';
 import {SORT_NAMES, SORT_NAMES_ARRAY} from './constants';
 import {FurnitureSortItem} from './furniture-sort-item';
@@ -15,7 +15,7 @@ type Props = {
 };
 
 export const FurnitureSort = memo<Props>(({value}) => {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const sortRef = useRef<HTMLButtonElement>(null);
 
     const [showSortPopup, setShowSortPopup] = useState(false);
