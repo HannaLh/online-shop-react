@@ -19,8 +19,6 @@ export const Home = () => {
 
     const {categoryId, sort, currentPage, searchValue} = useSelector(filterSelector);
 
-    const sortType = sort.sortProperty;
-
     const onChangeCategory = React.useCallback((idx: number) => {
         dispatch(setCategoryId(idx));
     }, [dispatch]);
@@ -30,8 +28,8 @@ export const Home = () => {
     };
 
     const getFurniture = useCallback(() => {
-        const sortBy = sort.sortProperty.replace('-', '');
-        const order = sort.sortProperty.includes('-') ? 'asc' : 'desc';
+        const sortBy = sort.replace('-', '');
+        const order = sort.includes('-') ? 'asc' : 'desc';
         const category = categoryId > 0 ? String(categoryId) : '';
         const search = searchValue;
 
@@ -45,12 +43,12 @@ export const Home = () => {
                 currentPage: String(currentPage),
             }),
         );
-    }, [sort.sortProperty, categoryId, searchValue, dispatch, currentPage]);
+    }, [sort, categoryId, searchValue, dispatch, currentPage]);
 
     useEffect(() => {
         const params = {
             categoryId: categoryId > 0 ? categoryId : null,
-            sortProperty: sortType,
+            sortProperty: sort,
             currentPage,
         };
         const queryString = qs.stringify(params, {skipNulls: true});
@@ -68,7 +66,7 @@ export const Home = () => {
             <div className="main-container">
                 <div className="home__products-search">
                     <Categories categoryId={categoryId} onChangeCategory={onChangeCategory}/>
-                    <Sort value={sort} />
+                    <Sort value={sort}/>
                 </div>
                 <FurnitureBlock/>
                 <Pagination

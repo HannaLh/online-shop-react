@@ -1,26 +1,17 @@
 import React, {memo, useState, useRef, useEffect} from 'react';
 import {useDispatch} from 'react-redux';
+
 import {setSort} from 'store/reducers/filter/filter';
+import {SORT_NAMES, SORT_NAMES_ARRAY} from './constants';
 
 import './sort.scss';
 
-import {Sort as SortType, SortPropertyEnum} from 'store/reducers/filter/types';
-
-type SortListItem = {
-    name: string;
-    sortProperty: SortPropertyEnum;
-}
+import type {SortPropertyType} from 'store/reducers/filter/types';
 
 type Props = {
-    value: SortType;
+    value: SortPropertyType;
 };
 
-export const sortList: SortListItem[] = [
-    {name: 'Popularity: High to Low', sortProperty: SortPropertyEnum.RATING_DESC},
-    {name: 'Popularity: Low to High', sortProperty: SortPropertyEnum.RATING_ASC},
-    {name: 'Price: High to Low', sortProperty: SortPropertyEnum.PRICE_DESC},
-    {name: 'Price: Low to High', sortProperty: SortPropertyEnum.PRICE_ASC},
-];
 
 export const Sort = memo(({value}: Props) => {
     const dispatch = useDispatch();
@@ -28,9 +19,13 @@ export const Sort = memo(({value}: Props) => {
 
     const [showSortPopup, setShowSortPopup] = useState(false);
 
-    const onClickListItem = (obj: SortListItem) => {
-        dispatch(setSort(obj));
+    const onListItemClick = (sortValue: SortPropertyType) => () => {
+        dispatch(setSort(sortValue));
         setShowSortPopup(false);
+    };
+
+    const onPopupClick = () => {
+        setShowSortPopup(!showSortPopup);
     };
 
     const handleClickOutside = (event: MouseEvent) => {
@@ -50,16 +45,18 @@ export const Sort = memo(({value}: Props) => {
         <button ref={sortRef} className="sort">
             <div className="sort__label">
                 <b className="sort__sort-by-title">Sort by:</b>
-                <span className="sort__sort-by-value" onClick={() => setShowSortPopup(!showSortPopup)}>{value.name}</span>
+                <span className="sort__sort-by-value" onClick={onPopupClick}>
+                    {SORT_NAMES[value]}
+                </span>
             </div>
             {showSortPopup && (
                 <div className="sort__popup">
-                    {sortList.map((obj, i) => (
+                    {SORT_NAMES_ARRAY.map(([sortValue, sortName]) => (
                         <div
-                            key={i}
-                            onClick={() => onClickListItem(obj)}
-                            className={`sort__popup-item ${value.sortProperty === obj.sortProperty ? 'sort__popup-item_active' : ''}`}>
-                            {obj.name}
+                            key={sortValue}
+                            onClick={onListItemClick(sortValue)}
+                            className={`sort__popup-item ${value === sortValue ? 'sort__popup-item_active' : ''}`}>
+                            {sortName}
                         </div>
                     ))}
                 </div>
