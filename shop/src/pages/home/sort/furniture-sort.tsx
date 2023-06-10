@@ -4,16 +4,16 @@ import {useDispatch} from 'react-redux';
 import {setSort} from 'store/reducers/filter/filter';
 import {SORT_NAMES, SORT_NAMES_ARRAY} from './constants';
 
-import './sort.scss';
+import './furniture-sort.scss';
 
 import type {SortPropertyType} from 'store/reducers/filter/types';
+
 
 type Props = {
     value: SortPropertyType;
 };
 
-
-export const Sort = memo(({value}: Props) => {
+export const FurnitureSort = memo(({value}: Props) => {
     const dispatch = useDispatch();
     const sortRef = useRef<HTMLButtonElement>(null);
 
@@ -42,15 +42,15 @@ export const Sort = memo(({value}: Props) => {
     }, []);
 
     return (
-        <button ref={sortRef} className="sort">
-            <div className="sort__label">
-                <b className="sort__sort-by-title">Sort by:</b>
-                <span className="sort__sort-by-value" onClick={onPopupClick}>
+        <button ref={sortRef} className="furniture-sort">
+            <div className="furniture-sort__label">
+                <b className="furniture-sort__sort-by-title">Sort by:</b>
+                <span className="furniture-sort__sort-by-value" onClick={onPopupClick}>
                     {SORT_NAMES[value]}
                 </span>
             </div>
             {showSortPopup && (
-                <div className="sort__popup">
+                <div className="furniture-sort__popup">
                     {SORT_NAMES_ARRAY.map(([sortValue, sortName]) => (
                         <div
                             key={sortValue}

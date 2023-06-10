@@ -5,11 +5,11 @@ import {useNavigate} from 'react-router-dom';
 
 import {filterSelector, setCategoryId, setCurrentPage} from 'store/reducers/filter/filter';
 import {Categories} from 'components/categories/categories';
-import {Sort} from 'components/sort/sort';
 import {MainBanner} from 'components/main-banner/main-banner';
 import {Pagination} from 'components/pagination/pagination';
 import {fetchFurniture} from 'store/reducers/furniture/actions';
 import {FurnitureBlock} from './furniture-block/furniture-block';
+import {FurnitureSort} from './sort/furniture-sort';
 
 import './home.scss';
 
@@ -66,7 +66,7 @@ export const Home = () => {
             <div className="main-container">
                 <div className="home__products-search">
                     <Categories categoryId={categoryId} onChangeCategory={onChangeCategory}/>
-                    <Sort value={sort}/>
+                    <FurnitureSort value={sort}/>
                 </div>
                 <FurnitureBlock/>
                 <Pagination
