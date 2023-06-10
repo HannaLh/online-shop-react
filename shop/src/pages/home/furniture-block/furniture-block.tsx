@@ -5,6 +5,7 @@ import {furnitureDataSelector} from 'store/reducers/furniture/furniture';
 import {SkeletonView} from './skeleton/skeleton-view';
 import {FurnitureCard} from './furniture-card/furniture-card';
 import {FurnitureBlockMessage as Message} from './message/furniture-block-message';
+import {BoxLoading} from 'components/box-loading/box-loading';
 
 import './furniture-block.scss';
 
@@ -34,12 +35,14 @@ export const FurnitureBlock = () => {
             <SkeletonView/>
         );
     }
-    // TODO add loading functionality
+
     return (
-        <div className="furniture-block">
-            {(items || []).map(furniture => (
-                <FurnitureCard key={furniture.id} {...furniture}/>
-            ))}
-        </div>
+        <BoxLoading loading={loading}>
+            <div className="furniture-block">
+                {(items || []).map(furniture => (
+                    <FurnitureCard key={furniture.id} {...furniture}/>
+                ))}
+            </div>
+        </BoxLoading>
     );
 };
