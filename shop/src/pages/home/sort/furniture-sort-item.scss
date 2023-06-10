@@ -1,0 +1,11 @@
+.furniture-sort-item {
+    padding: 12px 20px;
+    cursor: pointer;
+
+    &_active {
+        font-weight: bold;
+    }
+    &:hover, &_active {
+        background: rgba(254, 95, 30, 0.05);
+    }
+}

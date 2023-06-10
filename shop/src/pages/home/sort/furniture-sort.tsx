@@ -1,8 +1,9 @@
-import React, {memo, useState, useRef, useEffect} from 'react';
+import React, {memo, useState, useRef, useEffect, useCallback} from 'react';
 import {useDispatch} from 'react-redux';
 
 import {setSort} from 'store/reducers/filter/filter';
 import {SORT_NAMES, SORT_NAMES_ARRAY} from './constants';
+import {FurnitureSortItem} from './furniture-sort-item';
 
 import './furniture-sort.scss';
 
@@ -13,16 +14,16 @@ type Props = {
     value: SortPropertyType;
 };
 
-export const FurnitureSort = memo(({value}: Props) => {
+export const FurnitureSort = memo<Props>(({value}) => {
     const dispatch = useDispatch();
     const sortRef = useRef<HTMLButtonElement>(null);
 
     const [showSortPopup, setShowSortPopup] = useState(false);
 
-    const onListItemClick = (sortValue: SortPropertyType) => () => {
+    const onSelectSortItem = useCallback((sortValue: SortPropertyType) => {
         dispatch(setSort(sortValue));
         setShowSortPopup(false);
-    };
+    }, [dispatch]);
 
     const onPopupClick = () => {
         setShowSortPopup(!showSortPopup);
@@ -52,12 +53,13 @@ export const FurnitureSort = memo(({value}: Props) => {
             {showSortPopup && (
                 <div className="furniture-sort__popup">
                     {SORT_NAMES_ARRAY.map(([sortValue, sortName]) => (
-                        <div
+                        <FurnitureSortItem
                             key={sortValue}
-                            onClick={onListItemClick(sortValue)}
-                            className={`sort__popup-item ${value === sortValue ? 'sort__popup-item_active' : ''}`}>
-                            {sortName}
-                        </div>
+                            selectedValue={value}
+                            value={sortValue}
+                            name={sortName}
+                            onSelect={onSelectSortItem}
+                        />
                     ))}
                 </div>
             )}
