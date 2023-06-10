@@ -1,9 +1,8 @@
 import React, {memo, useState, useRef, useEffect, useCallback} from 'react';
 
-import {useAppDispatch} from 'store';
-import {setSort} from 'store/reducers/filter/filter';
 import {SORT_NAMES, SORT_NAMES_ARRAY} from './constants';
 import {FurnitureSortItem} from './furniture-sort-item';
+import {useFurniture} from 'hooks/useFurniture';
 
 import './furniture-sort.scss';
 
@@ -15,15 +14,15 @@ type Props = {
 };
 
 export const FurnitureSort = memo<Props>(({value}) => {
-    const dispatch = useAppDispatch();
     const sortRef = useRef<HTMLButtonElement>(null);
 
     const [showSortPopup, setShowSortPopup] = useState(false);
+    const {onChangeSortValue} = useFurniture();
 
     const onSelectSortItem = useCallback((sortValue: SortPropertyType) => {
-        dispatch(setSort(sortValue));
+        onChangeSortValue(sortValue);
         setShowSortPopup(false);
-    }, [dispatch]);
+    }, [onChangeSortValue]);
 
     const onPopupClick = () => {
         setShowSortPopup(!showSortPopup);

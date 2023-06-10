@@ -1,24 +1,23 @@
 import React, {useState, useCallback} from 'react';
 import debounce from 'lodash/debounce';
-import {useAppDispatch} from 'store';
-import {setSearchValue as setSearchValueAction} from 'store/reducers/filter/filter';
+import {useFurniture} from 'hooks/useFurniture';
 
 import './search.scss';
 
 import removeIcon from 'assets/img/icons/remove-icon.svg';
 
 export const Search = () => {
-    const dispatch = useAppDispatch();
     const [searchValue, setSearchValue] = useState<string>('');
+    const {onChangeSearchValue} = useFurniture();
 
     const onClickClear = () => {
-        dispatch(setSearchValueAction(''));
+        onChangeSearchValue('');
         setSearchValue('');
     };
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    const updateSearchValue = useCallback(debounce((str: string) => (
-            dispatch(setSearchValueAction(str))
+    const updateSearchValue = useCallback(debounce((newSearchValue: string) => (
+            onChangeSearchValue(newSearchValue)
         ), 200),
     []);
 

@@ -1,8 +1,8 @@
 export enum SortPropertyType {
-    RATING_DESC = 'rating',
-    RATING_ASC = '-rating',
-    PRICE_DESC = 'price',
-    PRICE_ASC = '-price',
+    RATING_DESC = 'RATING_DESC',
+    RATING_ASC = 'RATING_ASC',
+    PRICE_DESC = 'PRICE_DESC',
+    PRICE_ASC = 'PRICE_ASC',
 }
 
 export interface FilterSliceState {

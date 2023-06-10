@@ -1,49 +1,23 @@
-import React, {useCallback, useEffect} from 'react';
-import {useSelector, useDispatch} from 'react-redux';
+import React, {useEffect} from 'react';
 import qs from 'qs';
 import {useNavigate} from 'react-router-dom';
 
-import {filterSelector, setCategoryId, setCurrentPage} from 'store/reducers/filter/filter';
+import {useAppSelector} from 'store';
+import {filterSelector} from 'store/reducers/filter/filter';
 import {Categories} from 'components/categories/categories';
 import {MainBanner} from 'components/main-banner/main-banner';
 import {Pagination} from 'components/pagination/pagination';
-import {fetchFurniture} from 'store/reducers/furniture/actions';
 import {FurnitureBlock} from './furniture-block/furniture-block';
 import {FurnitureSort} from './sort/furniture-sort';
+import {useFurniture} from 'hooks/useFurniture';
 
 import './home.scss';
 
 export const Home = () => {
-    const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const {categoryId, sort, currentPage, searchValue} = useSelector(filterSelector);
-
-    const onChangeCategory = React.useCallback((idx: number) => {
-        dispatch(setCategoryId(idx));
-    }, [dispatch]);
-
-    const onChangePage = (page: number) => {
-        dispatch(setCurrentPage(page));
-    };
-
-    const getFurniture = useCallback(() => {
-        const sortBy = sort.replace('-', '');
-        const order = sort.includes('-') ? 'asc' : 'desc';
-        const category = categoryId > 0 ? String(categoryId) : '';
-        const search = searchValue;
-
-        dispatch(
-            // @ts-ignore
-            fetchFurniture({
-                sortBy,
-                order,
-                category,
-                search,
-                currentPage: String(currentPage),
-            }),
-        );
-    }, [sort, categoryId, searchValue, dispatch, currentPage]);
+    const {categoryId, sort, currentPage} = useAppSelector(filterSelector);
+    const {getAllFurniture, onChangePage, onChangeCategory} = useFurniture();
 
     useEffect(() => {
         const params = {
@@ -57,8 +31,8 @@ export const Home = () => {
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
-        getFurniture();
-    }, [getFurniture]);
+        getAllFurniture();
+    }, [getAllFurniture]);
 
     return (
         <div>
