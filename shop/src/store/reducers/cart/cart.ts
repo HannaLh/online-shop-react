@@ -1,13 +1,17 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {getTotalPrice} from './utils/getTotalPrice';
+import {Storage} from 'utils/storage';
+import {CART_ITEMS_KEY} from '../../../constants';
+import {saveCartToStorage} from './utils/saveCartToStorage';
 
 import type {CartItem, CartSliceState} from './types';
 import type {RootState} from 'store';
 
+const storage = Storage.get()[CART_ITEMS_KEY] || {};
 
 const initialState: CartSliceState = {
-    totalPrice: 0,
-    items: {},
+    totalPrice: storage.totalPrice || 0,
+    items: storage.items || {},
 };
 
 export const cartSlice = createSlice({
@@ -21,6 +25,7 @@ export const cartSlice = createSlice({
             state.items[id].count++;
 
             state.totalPrice = getTotalPrice(state.items);
+            saveCartToStorage(state.items, state.totalPrice);
         },
         changeItemCount(state, {payload: {id, count}}: PayloadAction<{id: string, count: number}>) {
             const item = state.items[id];
@@ -28,15 +33,18 @@ export const cartSlice = createSlice({
             if (item) {
                 item.count = Math.max(0, item.count + count);
                 state.totalPrice = getTotalPrice(state.items);
+                saveCartToStorage(state.items, state.totalPrice);
             }
         },
         removeItem(state, {payload}: PayloadAction<string>) {
             delete state.items[payload];
             state.totalPrice = getTotalPrice(state.items);
+            saveCartToStorage(state.items, state.totalPrice);
         },
         clearItems(state) {
             state.items = {};
             state.totalPrice = 0;
+            saveCartToStorage(state.items, state.totalPrice);
         },
     },
 });

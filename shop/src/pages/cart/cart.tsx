@@ -20,11 +20,11 @@ export const Cart = () => {
         }
     };
 
-    if (!totalPrice) {
+    const cartItems = Object.values(items);
+
+    if (!cartItems.length) {
         return <CartEmpty />;
     }
-
-    const cartItems = Object.values(items);
 
     return (
         <div className="cart-container">
