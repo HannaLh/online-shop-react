@@ -17,11 +17,10 @@ type Props = {
 
 export const FurnitureCard = ({id, title, price, imageUrl}: Props) => {
     const dispatch = useAppDispatch();
-    const cartItem = useAppSelector(cartItemByIdSelector(id));
-    const addedCount = cartItem ? cartItem.count : 0;
+    const cartItem = useAppSelector(state => cartItemByIdSelector(state, id));
+    const addedCount = cartItem?.count || 0;
 
     const onClickAddProd = () => {
-        // TODO Rework how to add item to bag
         const item: CartItem = {
             id,
             title,

@@ -1,6 +1,6 @@
 import React from 'react';
 import {useAppDispatch} from 'store';
-import {plusItem, minusItem, removeItem} from 'store/reducers/cart/cart';
+import {changeItemCount, removeItem} from 'store/reducers/cart/cart';
 
 import './cart-item.scss';
 
@@ -15,12 +15,8 @@ type Props = {
 export const CartItem = ({id, title, price, count, imageUrl}: Props) => {
     const dispatch = useAppDispatch();
 
-    const onClickPlus = () => {
-        dispatch(plusItem(id));
-    };
-
-    const onClickMinus = () => {
-        dispatch(minusItem(id));
+    const onChangeCartItemCount = (count: number) => () => {
+        dispatch(changeItemCount({id, count}));
     };
 
     const onClickRemove = () => {
@@ -38,9 +34,18 @@ export const CartItem = ({id, title, price, count, imageUrl}: Props) => {
                 <h1 className="cart-container__cart-title">{title}</h1>
             </div>
             <div className="cart-item__counter">
-                <button onClick={onClickPlus} className="cart-item__action-btn">+</button>
+                <button
+                    onClick={onChangeCartItemCount(1)}
+                    className="cart-item__action-btn">
+                    +
+                </button>
                 <div className="cart-item__items-count">{count}</div>
-                <button disabled={count === 1} onClick={onClickMinus} className="cart-item__action-btn">-</button>
+                <button
+                    disabled={count === 1}
+                    onClick={onChangeCartItemCount(-1)}
+                    className="cart-item__action-btn">
+                    -
+                </button>
             </div>
             <div className="cart-item__prices">
                 <div className="cart-item__total-price">${price * count}</div>

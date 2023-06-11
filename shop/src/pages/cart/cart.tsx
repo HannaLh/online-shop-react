@@ -5,13 +5,14 @@ import {useAppSelector, useAppDispatch} from 'store';
 import {CartItem} from './cart-item/cart-item';
 import {CartEmpty} from './cart-empty/cart-empty';
 import {clearItems, cartSelector} from 'store/reducers/cart/cart';
+import {getTotalItemsCount} from 'utils/getTotalItemsCount';
 
 import './cart.scss';
 
 export const Cart = () => {
     const dispatch = useAppDispatch();
     const {totalPrice, items} = useAppSelector(cartSelector);
-    const totalCount = (items || null).reduce((sum: number, item: any) => sum + item.count, 0);
+    const totalCount = getTotalItemsCount(items);
 
     const onClickClear = () => {
         if (window.confirm('Do you want clear the cart?')) {
@@ -23,6 +24,8 @@ export const Cart = () => {
         return <CartEmpty />;
     }
 
+    const cartItems = Object.values(items);
+
     return (
         <div className="cart-container">
             <div className="cart-container__header">
@@ -30,7 +33,7 @@ export const Cart = () => {
                 <button onClick={onClickClear} className="cart-container__remove-all-btn">Remove all</button>
             </div>
             <div>
-                {items.map((item: any) => (
+                {cartItems.map((item: any) => (
                     <CartItem key={item.id} {...item} />
                 ))}
             </div>

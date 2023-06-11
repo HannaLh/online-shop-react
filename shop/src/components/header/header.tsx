@@ -9,10 +9,11 @@ import './header.scss';
 
 import logoSvg from 'assets/img/logo/logo-maynooth.svg';
 import cartSvg from 'assets/img/icons/cart.svg';
+import {getTotalItemsCount} from 'utils/getTotalItemsCount';
 
 export const Header = () => {
     const {items} = useAppSelector(cartSelector);
-    const totalCount = items.reduce((sum, {count}) => sum + count, 0);
+    const totalCount = getTotalItemsCount(items);
 
     return (
         <header className="header">
