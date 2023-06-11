@@ -1,14 +1,18 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
+import {Storage} from 'utils/storage';
+import {FURNITURE_FILTERS_KEY} from '../../../constants';
+
 import {RootState} from 'store';
 import {FilterSliceState, SortPropertyType} from './types';
 
+const storage = Storage.get()[FURNITURE_FILTERS_KEY] || {};
 
 const initialState: FilterSliceState = {
     searchValue: '',
-    categoryId: 0,
-    currentPage: 1,
-    sort: SortPropertyType.RATING_DESC,
+    categoryId: storage.categoryId || 0,
+    currentPage: storage.page || 1,
+    sort: storage.sort || SortPropertyType.RATING_DESC,
 };
 
 export const filterSlice = createSlice({
@@ -27,18 +31,11 @@ export const filterSlice = createSlice({
         setCurrentPage(state, action: PayloadAction<number>) {
             state.currentPage = action.payload;
         },
-        setFilters(state, action: PayloadAction<FilterSliceState>) {
-            const {currentPage, categoryId, sort} = action.payload || {};
-
-            state.currentPage = +currentPage || 1;
-            state.categoryId = +categoryId || 0;
-            state.sort = sort || SortPropertyType.RATING_DESC;
-        },
     },
 });
 
 export const filterSelector = (state: RootState) => state.filter;
 
-export const {setCategoryId, setSort, setCurrentPage, setFilters, setSearchValue} = filterSlice.actions;
+export const {setCategoryId, setSort, setCurrentPage, setSearchValue} = filterSlice.actions;
 
 export default filterSlice.reducer;
