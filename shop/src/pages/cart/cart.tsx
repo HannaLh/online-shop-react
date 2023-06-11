@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Link} from 'react-router-dom';
 
 import {useAppSelector, useAppDispatch} from 'store';
@@ -13,6 +13,10 @@ export const Cart = () => {
     const dispatch = useAppDispatch();
     const {totalPrice, items} = useAppSelector(cartSelector);
     const totalCount = getTotalItemsCount(items);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     const onClickClear = () => {
         if (window.confirm('Do you want clear the cart?')) {
