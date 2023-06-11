@@ -33,7 +33,7 @@ export const Cart = () => {
                 <button onClick={onClickClear} className="cart-container__remove-all-btn">Remove all</button>
             </div>
             <div>
-                {cartItems.map((item: any) => (
+                {cartItems.map(item => (
                     <CartItem key={item.id} {...item} />
                 ))}
             </div>
