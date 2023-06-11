@@ -1,7 +1,7 @@
 import React, {memo, useState, useRef, useEffect, useCallback} from 'react';
 
 import {SORT_NAMES, SORT_NAMES_ARRAY} from './constants';
-import {FurnitureSortItem} from './furniture-sort-item';
+import {FurnitureSortItem} from './item/furniture-sort-item';
 import {useFurniture} from 'hooks/useFurniture';
 
 import './furniture-sort.scss';
