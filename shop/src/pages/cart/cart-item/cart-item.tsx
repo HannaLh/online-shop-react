@@ -27,7 +27,7 @@ export const CartItem = ({id, title, price, count, imageUrl}: Props) => {
 
     return (
         <div className="cart-item">
-            <div className="cart-item__image-box">
+            <div>
                 <img src={imageUrl} alt="Cart Item" width="190" height="200"></img>
             </div>
             <div className="cart-item__title-container">

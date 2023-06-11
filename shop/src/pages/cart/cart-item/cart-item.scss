@@ -5,12 +5,8 @@
     justify-content: space-between;
     padding-top: 40px;
 
-    &__image-box {
-        width: 15%;
-        text-align: center;
-    }
     &__title-container {
-        width: 15%;
+        width: 45%;
     }
     &__title {
         font-size: 17px;
@@ -18,16 +14,18 @@
         color: #202020;
     }
     &__counter {
-        width: 15%;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        column-gap: 16px;
     }
     &__prices {
         height: 100%;
         text-align: right;
         display: flex;
         flex-direction: column;
+        align-items: flex-end;
+        width: 150px;
     }
     &__action-btn {
         width: 40px;
@@ -54,7 +52,8 @@
         color: #202020;
     }
     &__remove-item {
-        padding-top: 5px;
+        width: max-content;
+        padding-top: 8px;
         font-size: 14px;
         font-weight: 600;
         color: #E44C4C;
