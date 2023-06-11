@@ -19,7 +19,7 @@ export const Categories = memo(({categoryId, onChangeCategory}: Props) => {
             <ul className="categories__container">
                 {CATEGORIES.map((categoryName, i) => (
                     <li
-                        key={i}
+                        key={categoryName}
                         onClick={onCategoryClick(i)}
                         className={`categories__item ${categoryId === i ? 'categories__item_active' : ''}`}>
                         {categoryName}
