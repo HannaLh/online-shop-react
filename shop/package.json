@@ -23,6 +23,7 @@
         "@types/react-dom": "^18.2.4",
         "ahooks": "^3.7.7",
         "axios": "^1.4.0",
+        "eslint": "^8.42.0",
         "json-server": "^0.17.3",
         "lodash": "^4.17.21",
         "lodash-es": "^4.17.21",
@@ -40,7 +41,7 @@
         "saas": "^1.0.0",
         "sass": "^1.62.1",
         "styled-components": "^5.3.10",
-        "typescript": "^5.0.4",
+        "typescript": "^4.9.5",
         "web-vitals": "^2.1.4"
     },
     "scripts": {
@@ -53,7 +54,39 @@
         "extends": [
             "react-app",
             "react-app/jest"
-        ]
+        ],
+        "rules": {
+            "semi": 2,
+            "comma-dangle": [
+                "error",
+                "always-multiline"
+            ],
+            "require-atomic-updates": 0,
+            "no-redeclare": 0,
+            "no-shadow": 0,
+            "quotes": [
+                "error",
+                "single"
+            ],
+            "quote-props": [
+                "error",
+                "as-needed"
+            ],
+            "object-shorthand": [
+                "error",
+                "always"
+            ],
+            "object-curly-spacing": [
+                "error",
+                "never"
+            ],
+            "eol-last": [
+                "error",
+                "always"
+            ],
+            "no-undef": 0,
+            "no-unused-vars": 0
+        }
     },
     "browserslist": {
         "production": [
