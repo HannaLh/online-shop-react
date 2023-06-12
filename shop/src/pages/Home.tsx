@@ -1,16 +1,16 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, {useEffect} from 'react';
+import {useSelector, useDispatch} from 'react-redux';
 import qs from 'qs';
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
-import { selectFilter, setCategoryId, setCurrentPage, setFilters } from '../redux/filter/slice';
-import { Categories } from '../Components/Categories/Categories';
-import { Sort, sortList } from '../Components/Sort/Sort'
-import {Card} from '../Components/FurnitureBlock/Card'
+import {selectFilter, setCategoryId, setCurrentPage, setFilters} from '../redux/filter/slice';
+import {Categories} from '../Components/Categories/Categories';
+import {Sort, sortList} from '../Components/Sort/Sort';
+import {Card} from '../Components/FurnitureBlock/Card';
 import Skeleton from '../Components/FurnitureBlock/Card/CardSkeleton';
-import { Banner } from "../Components/Banner/Banner";
-import {Pagination} from '../Components/Pagination/index'
-import { fetchFurniture, selectFurnitureData } from '../redux/furniture/slice';
+import {Banner} from '../Components/Banner/Banner';
+import {Pagination} from '../Components/Pagination/index';
+import {fetchFurniture, selectFurnitureData} from '../redux/furniture/slice';
 
 const Home: React.FC = () => {
     const dispatch = useDispatch();
@@ -18,7 +18,7 @@ const Home: React.FC = () => {
     const isMounted = React.useRef(false);
 
     const {items, status} = useSelector(selectFurnitureData );
-    const { categoryId, sort, currentPage, searchValue } = useSelector(selectFilter);
+    const {categoryId, sort, currentPage, searchValue} = useSelector(selectFilter);
 
     const sortType = sort.sortProperty;
 
@@ -27,7 +27,7 @@ const Home: React.FC = () => {
     }, []);
 
     const onChangePage = (page: number) => {
-        dispatch(setCurrentPage(page))
+        dispatch(setCurrentPage(page));
     };
 
     const getFurniture = async () => {
@@ -56,7 +56,7 @@ const Home: React.FC = () => {
                 sortProperty: sortType,
                 currentPage,
             };
-            const queryString = qs.stringify(params, { skipNulls: true });
+            const queryString = qs.stringify(params, {skipNulls: true});
             navigate(`/?${queryString}`);
         };
     }, [categoryId, sortType, searchValue, currentPage]);
@@ -75,7 +75,7 @@ const Home: React.FC = () => {
 
     useEffect(() => {
         getFurniture();
-    }, [categoryId, sortType, searchValue, currentPage])
+    }, [categoryId, sortType, searchValue, currentPage]);
 
 
 //     useEffect(() => {
@@ -124,7 +124,7 @@ const Home: React.FC = () => {
                 />
             </div>
         </>
-    )
-}
+    );
+};
 
 export default Home;

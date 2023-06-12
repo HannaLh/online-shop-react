@@ -1,10 +1,10 @@
-import React from 'react'
-import './Search.css'
-import { useDispatch } from 'react-redux';
-import { setSearchValue } from '../../redux/filter/slice';
+import React from 'react';
+import './Search.css';
+import {useDispatch} from 'react-redux';
+import {setSearchValue} from '../../redux/filter/slice';
 import debounce from 'lodash.debounce';
 
-import searchSvg from '../assets/img/icons/search.svg'
+import searchSvg from '../assets/img/icons/search.svg';
 
 export const Search:React.FC = () => {
     const dispatch = useDispatch();
@@ -15,7 +15,7 @@ export const Search:React.FC = () => {
         dispatch(setSearchValue(''));
         setValue('');
         inputRef.current?.focus();
-    }
+    };
 
     const updateSearchValue = React.useCallback(
         debounce((str: string) => {
@@ -27,7 +27,7 @@ export const Search:React.FC = () => {
     const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
         setValue(event.target.value);
         updateSearchValue(event.target.value);
-    }
+    };
 
     return (
         <div className="search-container">
@@ -49,7 +49,7 @@ export const Search:React.FC = () => {
             </label>
         </div>
         
-    )
-}
+    );
+};
 
 export default Search;

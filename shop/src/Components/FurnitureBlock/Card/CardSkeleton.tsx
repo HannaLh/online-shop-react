@@ -1,5 +1,5 @@
-import React from "react"
-import ContentLoader from "react-content-loader"
+import React from 'react';
+import ContentLoader from 'react-content-loader';
 
 const Skeleton:React.FC = (props) => (
     <ContentLoader 
@@ -21,6 +21,6 @@ const Skeleton:React.FC = (props) => (
         <circle cx="585" cy="534" r="7" /> 
         <circle cx="591" cy="534" r="3" />
     </ContentLoader>
-)
+);
 
-export default Skeleton
+export default Skeleton;

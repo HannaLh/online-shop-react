@@ -1,16 +1,16 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import {useSelector} from 'react-redux';
+import {Link} from 'react-router-dom';
 
-import "./Header.css";
+import './Header.css';
 import Search from '../Search/index';
-import { selectCart } from '../../redux/cart/slice';
+import {selectCart} from '../../redux/cart/slice';
 
 import logoSvg from '../assets/img/logo/logo-maynooth.svg';
 import cartSvg from '../assets/img/icons/cart.svg';
 
 export const Header: React.FC = () => {
-    const { items } = useSelector(selectCart);
+    const {items} = useSelector(selectCart);
     const isMounted = React.useRef(false);
 
     const totalCount = items.reduce((sum: number, item: any) => sum + item.count, 0);
@@ -48,5 +48,5 @@ export const Header: React.FC = () => {
                 </div>
             </div>
         </header>
-    )
-}
+    );
+};

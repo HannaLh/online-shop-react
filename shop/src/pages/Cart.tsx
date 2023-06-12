@@ -1,14 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import {Link} from 'react-router-dom';
+import {useSelector, useDispatch} from 'react-redux';
 
-import { CartItem } from '../Components/CartItem';
-import { CartEmpty } from '../Components/CartEmpty';
-import { clearItems, selectCart } from '../redux/cart/slice';
+import {CartItem} from '../Components/CartItem';
+import {CartEmpty} from '../Components/CartEmpty';
+import {clearItems, selectCart} from '../redux/cart/slice';
 
 export const Cart: React.FC = () => {
     const dispatch = useDispatch();
-    const { totalPrice, items } = useSelector(selectCart);
+    const {totalPrice, items} = useSelector(selectCart);
     const totalCount = items.reduce((sum: number, item: any) => sum + item.count, 0);
 
     const onClickClear = () => {
@@ -44,4 +44,4 @@ export const Cart: React.FC = () => {
             </div>
         </div>
     );
-}
+};

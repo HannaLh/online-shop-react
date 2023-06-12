@@ -1,5 +1,5 @@
 import React from 'react';
-import "./Banner.css";
+import './Banner.css';
 
 export const Banner:React.FC = () => {
     return (
@@ -14,5 +14,5 @@ export const Banner:React.FC = () => {
                 </div>
             </div>
         </section>
-    )
-}
+    );
+};

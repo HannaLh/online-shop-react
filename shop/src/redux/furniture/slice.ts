@@ -1,14 +1,14 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
+import {createSlice, createAsyncThunk, PayloadAction} from '@reduxjs/toolkit';
 import axios from 'axios';
-import { Furniture, FurnitureSliceState, SearchFurnitureParams, Status } from './types'
-import { RootState } from '../store';
+import {Furniture, FurnitureSliceState, SearchFurnitureParams, Status} from './types';
+import {RootState} from '../store';
 import pickBy from 'lodash/pickBy';
 
 export const fetchFurniture = createAsyncThunk<Furniture[], SearchFurnitureParams>(
     'furniture/fetchFurnitureStatus ',
     async (params) => {
         const {sortBy, category, search, currentPage, order} = params;
-        const { data } = await axios.get<Furniture[]>(`https://645513ffa74f994b3351784a.mockapi.io/items`, {
+        const {data} = await axios.get<Furniture[]>('https://645513ffa74f994b3351784a.mockapi.io/items', {
             params: pickBy(
                 {
                 page: currentPage,
@@ -21,13 +21,13 @@ export const fetchFurniture = createAsyncThunk<Furniture[], SearchFurnitureParam
             ),
         });
         return data;
-    }
-)
+    },
+);
 
 const initialState: FurnitureSliceState = {
     items: [],
     status: Status.LOADING, // loading | success | error
-}
+};
 
 const furnitureSlice = createSlice({
     name: 'furniture',
@@ -50,9 +50,9 @@ const furnitureSlice = createSlice({
         .addCase(fetchFurniture.rejected, (state) => {
             state.status = Status.ERROR;
             state.items = [];
-        })
+        });
     },
-})
+});
 
 export const selectFurnitureData = (state: RootState) => state.furniture;
 export const {setItems} = furnitureSlice.actions;

@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import cartEmptyImg from './assets/img/icons/empty-cart.png'
+import {Link} from 'react-router-dom';
+import cartEmptyImg from './assets/img/icons/empty-cart.png';
 
 export const CartEmpty: React.FC = () => {
     return (
@@ -13,5 +13,5 @@ export const CartEmpty: React.FC = () => {
                     <button>Back to shopping</button>
                 </Link>
         </div>
-    )
-}
+    );
+};

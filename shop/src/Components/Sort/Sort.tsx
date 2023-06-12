@@ -1,8 +1,8 @@
 import React from 'react';
-import "./Sort.css";
-import { useDispatch } from 'react-redux';
-import { setSort } from '../../redux/filter/slice';
-import { Sort as SortType, SortPropertyEnum } from '../../redux/filter/types';
+import './Sort.css';
+import {useDispatch} from 'react-redux';
+import {setSort} from '../../redux/filter/slice';
+import {Sort as SortType, SortPropertyEnum} from '../../redux/filter/types';
 
 type SortListItem = {
     name: string;
@@ -18,13 +18,13 @@ type SortPopupProps = {
 };
 
 export const sortList: SortListItem[] = [
-    { name: 'Popularity: High to Low', sortProperty: SortPropertyEnum.RATING_DESC },
-    { name: 'Popularity: Low to High', sortProperty: SortPropertyEnum.RATING_ASC },
-    { name: 'Price: High to Low', sortProperty: SortPropertyEnum.PRICE_DESC },
-    { name: 'Price: Low to High', sortProperty: SortPropertyEnum.PRICE_ASC },
+    {name: 'Popularity: High to Low', sortProperty: SortPropertyEnum.RATING_DESC},
+    {name: 'Popularity: Low to High', sortProperty: SortPropertyEnum.RATING_ASC},
+    {name: 'Price: High to Low', sortProperty: SortPropertyEnum.PRICE_DESC},
+    {name: 'Price: Low to High', sortProperty: SortPropertyEnum.PRICE_ASC},
 ];
 
-export const Sort: React.FC<SortPopupProps> = React.memo(({ value }) => {
+export const Sort: React.FC<SortPopupProps> = React.memo(({value}) => {
     const dispatch = useDispatch();
     const sortRef = React.useRef<HTMLButtonElement>(null);
 
@@ -33,7 +33,7 @@ export const Sort: React.FC<SortPopupProps> = React.memo(({ value }) => {
     const onClickListItem = (obj: SortListItem) => {
         dispatch(setSort(obj));
         setIsVisible(false);
-    }
+    };
 
     React.useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -45,7 +45,7 @@ export const Sort: React.FC<SortPopupProps> = React.memo(({ value }) => {
         };
         document.body.addEventListener('click', handleClickOutside);
 
-        return () => { document.body.removeEventListener('click', handleClickOutside) }
+        return () => { document.body.removeEventListener('click', handleClickOutside); };
 
     }, []);
 
@@ -70,5 +70,5 @@ export const Sort: React.FC<SortPopupProps> = React.memo(({ value }) => {
                 </div>
             )}
         </button>
-    )
+    );
 });

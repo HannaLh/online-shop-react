@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './NotFoundBlock.module.css'
+import styles from './NotFoundBlock.module.css';
 
 export const NotFoundBlock: React.FC = () => {
     return (
@@ -10,4 +10,4 @@ export const NotFoundBlock: React.FC = () => {
             Oops, nothing was found!
         </h1>
     );
-}
+};
