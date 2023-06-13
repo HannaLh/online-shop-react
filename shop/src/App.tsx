@@ -1,10 +1,10 @@
 import {Routes, Route} from 'react-router-dom';
 
-import Home from './pages/Home';
+import Home from './pages/Home/Home';
 import NotFound from './pages/NotFound';
 import {Cart} from './pages/Cart/Cart';
 
-import './App.css';
+import './App.scss';
 import MainLayout from './Components/layouts/MainLayout';
 
 function App() {

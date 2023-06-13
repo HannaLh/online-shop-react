@@ -3,14 +3,16 @@ import {useSelector, useDispatch} from 'react-redux';
 import qs from 'qs';
 import {useNavigate} from 'react-router-dom';
 
-import {selectFilter, setCategoryId, setCurrentPage, setFilters} from '../redux/filter/slice';
-import {Categories} from '../Components/Categories/Categories';
-import {Sort, sortList} from '../Components/Sort/Sort';
-import {Card} from '../Components/FurnitureBlock/Card/Card';
-import Skeleton from '../Components/FurnitureBlock/Card/CardSkeleton';
-import {Banner} from '../Components/Banner/Banner';
-import {Pagination} from '../Components/Pagination/Pagination';
-import {fetchFurniture, selectFurnitureData} from '../redux/furniture/slice';
+import {selectFilter, setCategoryId, setCurrentPage, setFilters} from '../../redux/filter/slice';
+import {Categories} from '../../Components/Categories/Categories';
+import {Sort, sortList} from '../../Components/Sort/Sort';
+import {Card} from '../../Components/FurnitureBlock/Card/Card';
+import Skeleton from '../../Components/FurnitureBlock/Card/CardSkeleton';
+import {Banner} from '../../Components/Banner/Banner';
+import {Pagination} from '../../Components/Pagination/Pagination';
+import {fetchFurniture, selectFurnitureData} from '../../redux/furniture/slice';
+
+import './Home.scss';
 
 const Home: React.FC = () => {
     const dispatch = useDispatch();
@@ -104,25 +106,26 @@ const Home: React.FC = () => {
         <>
             <Banner />
             <div className='container'>
-                    <div className='container products'>
-                        <div className='products-search'>
-                            <Categories value={categoryId} onChangeCategory={onChangeCategory}/>
-                            <Sort value={sort} />
-                        </div> 
+                <div className='container__products'>
+                    <div className='container__products-search'>
+                        <Categories value={categoryId} onChangeCategory={onChangeCategory}/>
+                        <Sort value={sort} />
+                    </div> 
                 </div>
                 {status === 'error' ? (
-                    <div className='container'>
+                    <div className='container__error-message'>
                         <h2>Cannot load items</h2>
                         <p>It seems that some kind of error has occured</p>
                     </div>
                 ) : (
-                    <div className="card-flex"> {status === 'loading' ? skeletons : furniture} </div>
+                    <div className="container__card-flex"> {status === 'loading' ? skeletons : furniture} </div>
                 )}
                 <Pagination
                     currentPage={currentPage}
                     onChangePage={onChangePage}
                 />
             </div>
+
         </>
     );
 };

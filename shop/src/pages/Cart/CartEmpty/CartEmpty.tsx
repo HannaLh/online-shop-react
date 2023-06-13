@@ -1,6 +1,9 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import cartEmptyImg from '../assets/img/icons/empty-cart.png';
+
+import cartEmptyImg from '../../../assets/img/icons/empty-cart.png';
+
+import './CartEmpty.scss';
 
 export const CartEmpty: React.FC = () => {
     return (
@@ -9,7 +12,7 @@ export const CartEmpty: React.FC = () => {
                 <h2>
                     Your cart is empty
                 </h2>
-                <Link to="/" className="button--back button--base">
+                <Link to="/" className="cart-empty__button-base cart-empty__button-back">
                     <button>Back to shopping</button>
                 </Link>
         </div>
