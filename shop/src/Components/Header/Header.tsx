@@ -3,11 +3,11 @@ import {useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
 
 import './Header.css';
-import Search from '../Search/index';
+import Search from '../Search/Search';
 import {selectCart} from '../../redux/cart/slice';
 
-import logoSvg from '../assets/img/logo/logo-maynooth.svg';
-import cartSvg from '../assets/img/icons/cart.svg';
+import logoSvg from '../../assets/img/logo/logo-maynooth.svg';
+import cartSvg from '../../assets/img/icons/cart.svg';
 
 export const Header: React.FC = () => {
     const {items} = useSelector(selectCart);
@@ -24,27 +24,23 @@ export const Header: React.FC = () => {
     }, [items]);
 
     return (
-        <header className='header'>
-            <div className='container'>
-                <div className='header-nav'>
-                    <Link to="/">
-                        <img width="198" src={logoSvg} alt="logo"></img>
+        <header className="header">
+            <div className="main-container header__nav-items">
+                <Link to="/">
+                    <img width="198" src={logoSvg} alt="logo"></img>
+                </Link>
+                <nav className="header__main-links">
+                    <a className="header__main-link" href="/">living room</a>
+                    <a className="header__main-link" href="/">bedroom</a>
+                    <a className="header__main-link" href="/">kitchen &  dining</a>
+                    <a className="header__main-link" href="/">contact</a>
+                </nav>
+                <div className="header__action-panel">
+                    <Search/>
+                    <Link to="/cart" className="header__cart-link">
+                        <span className="header__total-items-count">{totalCount}</span>
+                        <img src={cartSvg} alt="Cart icon"/>
                     </Link>
-                    <nav className='nav'>
-                        <ul className='nav-list'>
-                            <li className='nav-item'><a href="/">living room</a></li>
-                            <li className='nav-item'><a href="/">bedroom</a></li>
-                            <li className='nav-item'><a href="/">kitchen &  dining</a></li>
-                            <li className='nav-item'><a href="/">contact</a></li>
-                        </ul>
-                    </nav>
-                    <div className='header-menu__tools'>
-                        <Link to="/cart" className="cart-ref">
-                            <span className='header-cart__count'>{totalCount}</span>
-                            <img className='header-cart' src={cartSvg} alt='cart icon'></img>
-                        </Link>
-                        <Search />
-                    </div>
                 </div>
             </div>
         </header>
