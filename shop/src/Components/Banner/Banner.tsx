@@ -3,7 +3,7 @@ import './Banner.scss';
 
 export const Banner:React.FC = () => {
     return (
-        <section className="main-banner main-container">
+        <section className="main-banner">
             <div>
                 <h2 className="main-banner__title">
                     Your Best Value Products
