@@ -1,13 +1,13 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-import './Footer.css';
+import './Footer.scss';
 
-import facebookLogo from '../assets/img/icons/facebook.svg';
-import footerLogo from '../assets/img/logo/maynooth-logo.svg';
-import instaLogo from '../assets/img/icons/insta.svg';
-import twitterLogo from '../assets/img/icons/twitter.svg';
-import googleLogo from '../assets/img/icons/google.svg';
+import facebookLogo from '../../assets/img/icons/facebook.svg';
+import footerLogo from '../../assets/img/logo/maynooth-logo.svg';
+import instaLogo from '../../assets/img/icons/insta.svg';
+import twitterLogo from '../../assets/img/icons/twitter.svg';
+import googleLogo from '../../assets/img/icons/google.svg';
 
 export const Footer = () => (
     <footer className="footer">
