@@ -35,11 +35,10 @@
 }
 
 .cart-container__items {
-    margin: auto;
-    width: 70%;
     display: flex;
-    justify-content: space-between;
-    padding-top: 40px;
+    flex-direction: column;
+    margin: auto;
+    padding: 40px;
 }
 
 .cart-container__checkout {
@@ -63,7 +62,6 @@
     border-radius: 20px;
     cursor: pointer;
     font-size: 16px;
-    font-family: 'Open Sans';
     font-weight: 600;
     color: #202020;
 }
